@@ -1,7 +1,9 @@
 import { createAuthClient } from "better-auth/react";
 
-export const authClient = createAuthClient({
-  baseURL: process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000",
-});
+/**
+ * Sin `baseURL` el cliente usa el origen actual, así funciona igual en
+ * localhost, en un puerto alternativo y en producción.
+ */
+export const authClient = createAuthClient();
 
 export const { signIn, signUp, signOut, useSession } = authClient;

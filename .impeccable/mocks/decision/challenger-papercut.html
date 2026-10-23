@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Papel recortado en capas — Gastos Hormiga</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Martian+Mono:wght@400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1440px;height:900px;overflow:hidden;background:#F1E6D2;color:#24221F;font-family:Archivo,sans-serif}
+  header{height:88px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;border-bottom:1px solid rgba(36,34,31,.32)}
+  .brand{font-size:13px;font-weight:800;letter-spacing:.18em}
+  nav{display:flex;gap:28px;align-items:center;font-size:12px}
+  nav a{color:#24221F;text-decoration:none}
+  nav .cta{border:1px solid #24221F;padding:9px 15px}
+  main{display:grid;grid-template-columns:1fr 700px;height:812px;padding:52px 56px 0;gap:40px}
+  .copy{padding-top:40px}
+  h1{font-size:78px;line-height:.92;letter-spacing:-.045em;font-weight:800}
+  h1 em{font-style:normal;color:#C94F3D}
+  .sub{margin-top:26px;font-size:17px;line-height:1.6;max-width:350px;color:#3E3A34}
+  .cta{margin-top:36px;display:inline-block;background:#C94F3D;color:#F8F1E3;padding:17px 24px;font-family:Martian Mono,monospace;font-size:11px;letter-spacing:.08em;text-decoration:none}
+  .link{display:inline-block;margin-left:20px;font-size:12px;color:#24221F;text-underline-offset:5px}
+  .note{margin-top:44px;font-family:Martian Mono,monospace;font-size:9px;line-height:1.9;letter-spacing:.1em;color:#6B6155}
+  .stack{position:relative;margin-top:8px;height:650px}
+  .layer{position:absolute;right:40px;width:560px;border:1.5px solid #24221F;padding:32px 32px 0;overflow:hidden}
+  .total{top:0;height:190px;background:#F8F1E3;z-index:5}
+  .total:before{content:"";position:absolute;right:-1px;top:-1px;width:74px;height:74px;background:#F1E6D2;border-left:1.5px solid #24221F;border-bottom:1.5px solid #24221F;clip-path:polygon(0 0,100% 0,100% 100%)}
+  .l1{top:160px;height:110px;background:#C94F3D;color:#F8F1E3;z-index:4}
+  .l2{top:240px;height:110px;background:#F8F1E3;z-index:3}
+  .l3{top:320px;height:110px;background:#2F6B5E;color:#F8F1E3;z-index:2}
+  .l4{top:400px;height:110px;background:#D9A441;z-index:1}
+  .tag{display:inline-block;font-family:Martian Mono,monospace;font-size:9px;letter-spacing:.1em;border:1px solid currentColor;padding:3px 7px}
+  .label{margin-top:9px;font-size:13px;letter-spacing:.02em}
+  .total .label{margin-top:16px;font-size:16px}
+  .amount{font-size:46px;letter-spacing:-.04em;font-weight:700;margin-top:2px}
+  .total .amount{font-size:62px}
+  .foot{position:absolute;left:32px;right:32px;bottom:18px;display:flex;justify-content:space-between;font-family:Martian Mono,monospace;font-size:9px;letter-spacing:.08em}
+  .cat{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+  .cat .amount{font-size:30px;margin-top:0;white-space:nowrap}
+  .totals{position:absolute;left:100px;top:536px;font-family:Martian Mono,monospace;font-size:9px;line-height:1.9;letter-spacing:.1em;color:#6B6155}
+  .totals b{display:block;font-family:Archivo,sans-serif;font-size:21px;letter-spacing:-.02em;color:#24221F;margin-top:2px}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">GASTOS HORMIGA</div>
+  <nav><a>Cómo funciona</a><a>Categorías</a><a>Entrar</a><a class="cta">Crear cuenta</a></nav>
+</header>
+<main>
+  <section class="copy">
+    <h1>Tu mes,<br>capa por<br><em>capa.</em></h1>
+    <p class="sub">Cada categoría es una hoja. Al poner una sobre otra, el mes entero aparece sin sombras ni sorpresas.</p>
+    <a class="cta">APILAR MIS GASTOS →</a><a class="link">Ver cómo funciona</a>
+    <p class="note">DATOS DE EJEMPLO · MONTOS EN CLP<br>CORTE Y PEGADO · SIN SOMBRAS</p>
+  </section>
+  <section class="stack">
+    <div class="layer total">
+      <span class="tag">TOTAL OCTUBRE</span>
+      <div class="label">Tu mes, completo</div>
+      <div class="amount">$ 248.730</div>
+      <div class="foot"><span>PRESUPUESTO $ 300.000</span><span>82,9% USADO</span></div>
+    </div>
+    <div class="layer l1"><div class="cat"><div><span class="tag">ALIMENTACIÓN</span><div class="label">Almacén, feria y almuerzos</div></div><div class="amount">$ 82.400</div></div></div>
+    <div class="layer l2"><div class="cat"><div><span class="tag">SERVICIOS</span><div class="label">Luz, agua e internet</div></div><div class="amount">$ 38.900</div></div></div>
+    <div class="layer l3"><div class="cat"><div><span class="tag">OCIO</span><div class="label">Cafés, salidas y delivery</div></div><div class="amount">$ 41.600</div></div></div>
+    <div class="layer l4"><div class="cat"><div><span class="tag">TRANSPORTE</span><div class="label">Micro, metro y bencina</div></div><div class="amount">$ 24.730</div></div></div>
+    <p class="totals">5 CAPAS · 4 CATEGORÍAS<b>Una sola pila.</b></p>
+  </section>
+</main>
+</body>
+</html>
+<!-- sketch refresh 2026-10-23T12:53:33 -->

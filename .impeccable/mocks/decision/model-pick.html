@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>Estado de cuenta intervenido — Gastos Hormiga</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Martian+Mono:wght@400;500;600&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1440px;height:900px;overflow:hidden;background:#DDE7DD;color:#17232B;font-family:Archivo,sans-serif;background-image:repeating-linear-gradient(45deg,rgba(23,35,43,.045) 0 1px,transparent 1px 7px),repeating-linear-gradient(-45deg,rgba(23,35,43,.03) 0 1px,transparent 1px 11px)}
+  header{height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;border-bottom:1px solid rgba(23,35,43,.22)}
+  .brand{font-size:12px;font-weight:800;letter-spacing:.18em}
+  nav{display:flex;gap:26px;align-items:center;font-size:12px;letter-spacing:.06em}
+  nav a{color:#17232B;text-decoration:none}
+  nav .cta{border:1px solid #17232B;padding:9px 14px}
+  main{display:grid;grid-template-columns:430px 1fr;height:816px;padding:52px 56px 0}
+  .copy{padding:38px 34px 0 0;position:relative}
+  h1{font-size:62px;line-height:.95;letter-spacing:-.04em;font-weight:800}
+  .sub{margin-top:24px;font-size:16px;line-height:1.6;max-width:320px;color:#33454C}
+  .stamp{margin-top:34px;display:inline-flex;align-items:center;gap:12px;background:#C63C32;color:#F6F1E5;padding:16px 20px;font-family:Martian Mono,monospace;font-size:11px;letter-spacing:.08em;transform:rotate(-2deg);box-shadow:5px 5px 0 rgba(23,35,43,.18);text-decoration:none}
+  .stamp span{font-size:18px;line-height:1}
+  .link{display:inline-block;margin-top:22px;font-size:12px;color:#17232B;text-underline-offset:4px}
+  .note{margin-top:42px;font-family:Martian Mono,monospace;font-size:9px;letter-spacing:.08em;color:#5E7169}
+  .sheet{position:relative;align-self:start;margin-left:6px;width:820px;min-height:748px;background:#FBF8EE;box-shadow:16px 18px 0 rgba(23,35,43,.12),0 1px 0 #fff inset;padding:34px 150px 34px 38px;transform:rotate(-.4deg)}
+  .sheet:before{content:"";position:absolute;inset:0;border:1px solid rgba(23,35,43,.18);pointer-events:none}
+  .sheet-head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #17232B;padding-bottom:14px}
+  .sheet-head h2{font-size:21px;letter-spacing:-.01em}
+  .sheet-head p{font-family:Martian Mono,monospace;font-size:9px;letter-spacing:.08em;color:#52645B;text-align:right;line-height:1.7}
+  .meta{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:16px;font-family:Martian Mono,monospace;font-size:9px;line-height:1.8;color:#52645B}
+  .meta b{display:block;color:#17232B;font-weight:500}
+  table{width:100%;border-collapse:collapse;margin-top:20px;font-family:Martian Mono,monospace;font-size:11px}
+  th{text-align:left;font-size:8px;letter-spacing:.12em;color:#6A7B72;font-weight:500;padding:0 0 8px;border-bottom:1px solid #B9C4BC}
+  th:last-child{text-align:right}
+  td{padding:9px 0;border-bottom:1px dotted #C9D1CA}
+  td:nth-child(2){color:#33454C}
+  td:last-child{text-align:right}
+  .small{position:relative}
+  .circle{position:absolute;left:112px;top:248px;width:470px;height:220px;pointer-events:none;overflow:visible}
+  .circle path{fill:none;stroke:#C63C32;stroke-width:3.4;stroke-linecap:round;opacity:.92}
+  .circle path + path{stroke-width:2.2;opacity:.55;transform:translate(3px,-2px)}
+  .sum{position:absolute;right:6px;top:300px;width:136px;transform:rotate(-4deg);color:#C63C32;font-family:Martian Mono,monospace;font-size:9px;text-align:center;line-height:1.55}
+  .sum strong{display:block;font-size:23px;font-weight:600;letter-spacing:-.02em;margin:3px 0;white-space:nowrap}
+  .arrow{position:absolute;right:126px;top:330px;width:44px;height:18px;border-top:2px solid #C63C32;transform:rotate(10deg)}
+  .arrow:after{content:"";position:absolute;left:-2px;top:-6px;width:10px;height:10px;border-left:2px solid #C63C32;border-bottom:2px solid #C63C32;transform:rotate(45deg)}
+  .budget{margin-top:18px;display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-top:2px solid #17232B}
+  .budget span{font-family:Martian Mono,monospace;font-size:10px;letter-spacing:.06em}
+  .budget b{font-size:17px}
+  .highlight{position:relative;z-index:1}
+  .highlight:before{content:"";position:absolute;left:-5px;right:-5px;top:1px;bottom:1px;background:#F2E45E;opacity:.7;z-index:-1;transform:rotate(-.5deg)}
+  .revisado{position:absolute;left:0;bottom:26px;width:104px;height:104px;border:2px solid #C63C32;border-radius:50%;display:grid;place-items:center;color:#C63C32;font-family:Martian Mono,monospace;font-size:9px;letter-spacing:.1em;text-align:center;line-height:1.6;transform:rotate(9deg);opacity:.85}
+  .revisado:before{content:"";position:absolute;inset:7px;border:1px solid #C63C32;border-radius:50%}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">GASTOS HORMIGA</div>
+  <nav><a>Cómo funciona</a><a>Entrar</a><a class="cta">Crear cuenta</a></nav>
+</header>
+<main>
+  <section class="copy">
+    <h1>Lo que<br>no ves,<br>suma.</h1>
+    <p class="sub">La app que convierte los gastos de todos los días en un presupuesto que sí puedes mirar.</p>
+    <a class="stamp">AUDITAR MIS GASTOS <span>→</span></a>
+    <a class="link">Ver cómo funciona</a>
+    <p class="note">CARTOLA DE EJEMPLO · MONTOS EN CLP</p>
+    <div class="revisado">REVISADO<br>CON<br>HORMIGA</div>
+  </section>
+  <section class="sheet">
+    <div class="sheet-head">
+      <h2>CARTOLA DEL MES</h2>
+      <p>OCTUBRE 2026<br>CUENTA ·· 4821<br>MONEDA CLP</p>
+    </div>
+    <div class="meta">
+      <div><b>Titular</b>Tú</div>
+      <div><b>Período</b>01 — 31 oct</div>
+      <div><b>Presupuesto</b><span class="highlight">$ 300.000</span></div>
+    </div>
+    <table>
+      <thead><tr><th>FECHA</th><th>DESCRIPCIÓN</th><th>MONTO</th></tr></thead>
+      <tbody>
+        <tr><td>02 OCT</td><td>Arriendo</td><td>180.000</td></tr>
+        <tr><td>03 OCT</td><td>Supermercado</td><td>32.450</td></tr>
+        <tr><td>05 OCT</td><td>Café con leche</td><td>2.400</td></tr>
+        <tr><td>06 OCT</td><td>Micro 210</td><td>730</td></tr>
+        <tr><td>07 OCT</td><td>Almuerzo</td><td>6.900</td></tr>
+        <tr><td>09 OCT</td><td>Snack</td><td>1.200</td></tr>
+        <tr><td>11 OCT</td><td>Almacén</td><td>3.250</td></tr>
+        <tr><td>12 OCT</td><td>Farmacia</td><td>4.990</td></tr>
+        <tr><td>15 OCT</td><td>Internet</td><td>19.990</td></tr>
+        <tr><td>18 OCT</td><td>Libro</td><td>9.800</td></tr>
+        <tr><td>22 OCT</td><td>Delivery</td><td>12.500</td></tr>
+      </tbody>
+    </table>
+    <div class="budget"><span>TOTAL GASTADO</span><b>$ 248.730</b></div>
+    <div class="budget"><span>DISPONIBLE</span><b>$ 51.270</b></div>
+    <svg class="circle" viewBox="0 0 516 224" aria-hidden="true">
+      <path d="M30 56 C 90 10, 390 6, 470 42 C 512 62, 506 150, 458 192 C 390 228, 96 224, 40 184 C 4 158, 2 88, 34 52"/>
+      <path d="M32 54 C 96 12, 386 8, 468 44"/>
+    </svg>
+    <div class="sum">GASTOS HORMIGA<strong>$ 19.470</strong>ESTO SE VA<br>EN PEQUEÑECES</div>
+  </section>
+</main>
+</body>
+</html>
+<!-- sketch refresh 2026-10-23T12:53:33 -->

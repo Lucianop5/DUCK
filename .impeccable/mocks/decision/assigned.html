@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>La tira de sumar — Gastos Hormiga</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Doto:wght@400;500;600;700;800;900&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1440px;height:900px;overflow:hidden;background:#17352D;color:#F3EFE4;font-family:Archivo,sans-serif}
+  .machine{width:100%;height:100%;display:flex;flex-direction:column;background:radial-gradient(1100px 600px at 50% 0%,#22483D 0%,#17352D 58%,#122A24 100%)}
+  header{height:92px;display:flex;align-items:center;justify-content:space-between;padding:0 54px;border-bottom:1px solid rgba(243,239,228,.16)}
+  .brand{display:flex;align-items:center;gap:14px;font-size:13px;font-weight:700;letter-spacing:.18em}
+  .mark{width:34px;height:34px;display:grid;place-items:center;background:#D04532;color:#F8F3E8;font-family:Doto,monospace;font-size:13px;letter-spacing:.04em;border-radius:3px}
+  nav{display:flex;align-items:center;gap:30px;font-size:12px;letter-spacing:.08em;color:#C8D6CE}
+  nav a{color:inherit;text-decoration:none}
+  nav .nav-cta{border:1px solid rgba(243,239,228,.36);padding:10px 16px;border-radius:3px;color:#F3EFE4}
+  main{flex:1;display:grid;grid-template-columns:390px 1fr 250px;min-height:0}
+  .left{padding:64px 24px 40px 54px;display:flex;flex-direction:column;justify-content:center;gap:24px}
+  h1{font-size:62px;line-height:.96;font-weight:800;letter-spacing:-.035em}
+  .sub{font-size:17px;line-height:1.55;color:#BDCCC4;max-width:310px}
+  .key{display:inline-flex;align-items:center;justify-content:center;width:300px;height:58px;background:#D04532;color:#FBF6EA;font-family:Doto,monospace;font-size:13px;letter-spacing:.08em;border-radius:5px;box-shadow:0 5px 0 #7C2419;text-decoration:none;margin-top:6px}
+  .link{font-size:12px;letter-spacing:.06em;color:#C8D6CE;text-decoration:underline;text-underline-offset:5px;text-decoration-color:#6E8A7E}
+  .fine{font-size:11px;letter-spacing:.06em;color:#7F9A8D}
+  .tape-wrap{position:relative;display:flex;justify-content:center;min-height:0}
+  .slot{position:absolute;top:0;left:50%;transform:translateX(-50%);width:548px;height:20px;background:#0C1F1A;border-radius:0 0 7px 7px;box-shadow:inset 0 4px 9px rgba(0,0,0,.6);z-index:3}
+  .slot:after{content:"";position:absolute;left:22px;right:22px;top:8px;height:3px;background:#06120F;border-radius:2px}
+  .tape{width:520px;margin-top:12px;padding:38px 34px 60px;background:#F3EFE4;color:#171614;box-shadow:14px 16px 34px rgba(0,0,0,.34);position:relative;overflow:hidden;background-image:repeating-linear-gradient(0deg,rgba(23,22,20,.025) 0 1px,transparent 1px 5px)}
+  .tape:before,.tape:after{content:"";position:absolute;top:0;bottom:0;width:6px;background-image:radial-gradient(circle at 50% 4px,#17352D 0 2.4px,transparent 2.6px);background-size:6px 12px;opacity:.28}
+  .tape:before{left:0}.tape:after{right:0}
+  .tape-head{display:flex;justify-content:space-between;align-items:baseline;font-family:Doto,monospace;font-size:11px;letter-spacing:.08em;border-bottom:1px solid #171614;padding-bottom:10px}
+  .tape-sub{margin-top:10px;font-family:Doto,monospace;font-size:9px;letter-spacing:.12em;color:#6E6A61}
+  .rows{margin-top:22px}
+  .row{display:flex;align-items:baseline;gap:10px;padding:7px 0;font-size:14px;border-bottom:1px dotted #C9C3B5}
+  .row span:first-child{flex:0 0 auto;max-width:250px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .row .lead{flex:1;border-bottom:1px dotted #C9C3B5;transform:translateY(-4px)}
+  .row span:last-child{font-family:Doto,monospace;font-size:14px;letter-spacing:.04em}
+  .total{margin-top:20px;display:flex;justify-content:space-between;align-items:flex-end;border-top:3px double #171614;padding-top:12px}
+  .total span:first-child{font-family:Doto,monospace;font-size:10px;letter-spacing:.1em}
+  .total span:last-child{font-family:Doto,monospace;font-size:31px;line-height:1;color:#B63424;letter-spacing:-.02em}
+  .budget{margin-top:22px;border:1px solid #171614;padding:12px 12px 10px}
+  .budget-top{display:flex;justify-content:space-between;font-family:Doto,monospace;font-size:9px;letter-spacing:.08em}
+  .bar{margin-top:9px;height:9px;background:#DDD7C8;border:1px solid #171614;padding:1px}
+  .bar i{display:block;height:100%;width:82%;background:#B63424}
+  .budget-foot{display:flex;justify-content:space-between;margin-top:7px;font-family:Doto,monospace;font-size:9px;letter-spacing:.06em;color:#B63424}
+  .more{opacity:.5}
+  .right{padding:62px 34px 40px 10px;display:flex;flex-direction:column;gap:22px}
+  .panel-label{font-family:Doto,monospace;font-size:10px;letter-spacing:.16em;color:#8FA79E;border-bottom:1px solid rgba(243,239,228,.18);padding-bottom:10px}
+  .keys{display:grid;grid-template-columns:repeat(3,62px);gap:12px}
+  .cap{width:62px;height:62px;border-radius:50%;background:#F3EFE4;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;box-shadow:0 3px 0 #0C1F1A,inset 0 1px 0 #fff}
+  .cap i{width:13px;height:13px;border-radius:50%;display:block}
+  .cap span{font-family:Doto,monospace;font-size:8px;letter-spacing:.08em;color:#17352D}
+  .panel-note{font-size:11px;line-height:1.5;color:#7F9A8D;max-width:170px}
+  .bottom-slot{position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);width:548px;height:26px;background:#0C1F1A;border-radius:7px 7px 0 0;z-index:4;box-shadow:0 -5px 12px rgba(0,0,0,.4)}
+</style>
+</head>
+<body>
+<div class="machine">
+  <header>
+    <div class="brand"><span class="mark">GH</span> GASTOS HORMIGA</div>
+    <nav><a>Cómo funciona</a><a>Categorías</a><a>Entrar</a><a class="nav-cta">Crear cuenta</a></nav>
+  </header>
+  <main>
+    <section class="left">
+      <h1>Cada gasto<br>pequeño<br>suma.</h1>
+      <p class="sub">Anota en segundos, ponle presupuesto a tus categorías y mira el mes completo sin planillas.</p>
+      <a class="key">ANOTAR MI PRIMER GASTO</a>
+      <a class="link">Ver cómo funciona</a>
+      <p class="fine">Hecho en Chile · Montos en CLP</p>
+    </section>
+    <section class="tape-wrap">
+      <div class="slot"></div>
+      <div class="tape">
+        <div class="tape-head"><span>GASTOS HORMIGA</span><span>OCT 2026</span></div>
+        <div class="tape-sub">MOVIMIENTOS · DATOS DE EJEMPLO</div>
+        <div class="rows">
+          <div class="row"><span>Café con leche</span><span class="lead"></span><span>2.400</span></div>
+          <div class="row"><span>Micro 210</span><span class="lead"></span><span>730</span></div>
+          <div class="row"><span>Almuerzo</span><span class="lead"></span><span>6.900</span></div>
+          <div class="row"><span>Delivery</span><span class="lead"></span><span>12.500</span></div>
+          <div class="row"><span>Almacén</span><span class="lead"></span><span>3.250</span></div>
+          <div class="row"><span>Snack</span><span class="lead"></span><span>1.200</span></div>
+          <div class="row"><span>Bencina</span><span class="lead"></span><span>8.000</span></div>
+        </div>
+        <div class="total"><span>TOTAL DEL MES</span><span>$ 248.730</span></div>
+        <div class="budget">
+          <div class="budget-top"><span>PRESUPUESTO</span><span>$ 300.000</span></div>
+          <div class="bar"><i></i></div>
+          <div class="budget-foot"><span>82% USADO</span><span>QUEDAN $ 51.270</span></div>
+        </div>
+        <div class="rows more">
+          <div class="row"><span>Farmacia</span><span class="lead"></span><span>4.990</span></div>
+          <div class="row"><span>Libro</span><span class="lead"></span><span>9.800</span></div>
+        </div>
+      </div>
+      <div class="bottom-slot"></div>
+    </section>
+    <aside class="right">
+      <p class="panel-label">CATEGORÍAS</p>
+      <div class="keys">
+        <div class="cap"><i style="background:#F97316"></i><span>ALIM</span></div>
+        <div class="cap"><i style="background:#3B82F6"></i><span>TRAN</span></div>
+        <div class="cap"><i style="background:#8B5CF6"></i><span>VIVI</span></div>
+        <div class="cap"><i style="background:#06B6D4"></i><span>SERV</span></div>
+        <div class="cap"><i style="background:#EC4899"></i><span>OCIO</span></div>
+        <div class="cap"><i style="background:#EF4444"></i><span>SALUD</span></div>
+        <div class="cap"><i style="background:#10B981"></i><span>EDU</span></div>
+        <div class="cap"><i style="background:#EAB308"></i><span>COMP</span></div>
+        <div class="cap"><i style="background:#64748B"></i><span>OTROS</span></div>
+      </div>
+      <p class="panel-note">Nueve categorías listas al crear tu cuenta. Tú decides cuáles quedan.</p>
+    </aside>
+  </main>
+</div>
+</body>
+</html>
+<!-- sketch refresh 2026-10-23T12:53:33 -->

@@ -1,0 +1,155 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "title": "Design System: Gastos Hormiga",
+  "extensions": {
+    "colorMeta": {
+      "machine": { "role": "secondary", "displayName": "Verde esmalte de máquina", "tonalRamp": ["oklch(15% 0.04 165)", "oklch(26% 0.04 165)", "oklch(38% 0.04 165)", "oklch(49% 0.04 165)", "oklch(61% 0.04 165)", "oklch(72% 0.04 165)", "oklch(84% 0.04 165)", "oklch(95% 0.04 165)"] },
+      "machine-deep": { "role": "secondary", "displayName": "Ranura de máquina", "tonalRamp": ["oklch(15% 0.03 165)", "oklch(26% 0.03 165)", "oklch(38% 0.03 165)", "oklch(49% 0.03 165)", "oklch(61% 0.03 165)", "oklch(72% 0.03 165)", "oklch(84% 0.03 165)", "oklch(95% 0.03 165)"] },
+      "machine-soft": { "role": "secondary", "displayName": "Esmalte iluminado", "tonalRamp": ["oklch(15% 0.05 165)", "oklch(26% 0.05 165)", "oklch(38% 0.05 165)", "oklch(49% 0.05 165)", "oklch(61% 0.05 165)", "oklch(72% 0.05 165)", "oklch(84% 0.05 165)", "oklch(95% 0.05 165)"] },
+      "tape": { "role": "neutral", "displayName": "Cinta de papel", "tonalRamp": ["oklch(15% 0.015 85)", "oklch(26% 0.015 85)", "oklch(38% 0.015 85)", "oklch(49% 0.015 85)", "oklch(61% 0.015 85)", "oklch(72% 0.015 85)", "oklch(84% 0.015 85)", "oklch(95% 0.015 85)"] },
+      "tape-dim": { "role": "neutral", "displayName": "Papel de soporte", "tonalRamp": ["oklch(15% 0.02 85)", "oklch(26% 0.02 85)", "oklch(38% 0.02 85)", "oklch(49% 0.02 85)", "oklch(61% 0.02 85)", "oklch(72% 0.02 85)", "oklch(84% 0.02 85)", "oklch(95% 0.02 85)"] },
+      "ink": { "role": "neutral", "displayName": "Tinta", "tonalRamp": ["oklch(15% 0.005 80)", "oklch(26% 0.005 80)", "oklch(38% 0.005 80)", "oklch(49% 0.005 80)", "oklch(61% 0.005 80)", "oklch(72% 0.005 80)", "oklch(84% 0.005 80)", "oklch(95% 0.005 80)"] },
+      "primary": { "role": "primary", "displayName": "Rojo de acción", "tonalRamp": ["oklch(15% 0.17 32)", "oklch(26% 0.17 32)", "oklch(38% 0.17 32)", "oklch(49% 0.17 32)", "oklch(61% 0.17 32)", "oklch(72% 0.17 32)", "oklch(84% 0.17 32)", "oklch(95% 0.17 32)"] },
+      "primary-foreground": { "role": "neutral", "displayName": "Texto de acción", "tonalRamp": ["oklch(15% 0.015 85)", "oklch(26% 0.015 85)", "oklch(38% 0.015 85)", "oklch(49% 0.015 85)", "oklch(61% 0.015 85)", "oklch(72% 0.015 85)", "oklch(84% 0.015 85)", "oklch(95% 0.015 85)"] },
+      "stamp": { "role": "primary", "displayName": "Rojo de sobreimpresión", "tonalRamp": ["oklch(15% 0.16 32)", "oklch(26% 0.16 32)", "oklch(38% 0.16 32)", "oklch(49% 0.16 32)", "oklch(61% 0.16 32)", "oklch(72% 0.16 32)", "oklch(84% 0.16 32)", "oklch(95% 0.16 32)"] },
+      "field": { "role": "neutral", "displayName": "Campo sobre papel", "tonalRamp": ["oklch(15% 0.015 85)", "oklch(26% 0.015 85)", "oklch(38% 0.015 85)", "oklch(49% 0.015 85)", "oklch(61% 0.015 85)", "oklch(72% 0.015 85)", "oklch(84% 0.015 85)", "oklch(95% 0.015 85)"] },
+      "background": { "role": "neutral", "displayName": "Mesa clara", "tonalRamp": ["oklch(15% 0.02 85)", "oklch(26% 0.02 85)", "oklch(38% 0.02 85)", "oklch(49% 0.02 85)", "oklch(61% 0.02 85)", "oklch(72% 0.02 85)", "oklch(84% 0.02 85)", "oklch(95% 0.02 85)"] },
+      "secondary": { "role": "neutral", "displayName": "Superficie apagada", "tonalRamp": ["oklch(15% 0.025 85)", "oklch(26% 0.025 85)", "oklch(38% 0.025 85)", "oklch(49% 0.025 85)", "oklch(61% 0.025 85)", "oklch(72% 0.025 85)", "oklch(84% 0.025 85)", "oklch(95% 0.025 85)"] },
+      "muted-foreground": { "role": "neutral", "displayName": "Texto secundario de mesa", "tonalRamp": ["oklch(15% 0.015 85)", "oklch(26% 0.015 85)", "oklch(38% 0.015 85)", "oklch(49% 0.015 85)", "oklch(61% 0.015 85)", "oklch(72% 0.015 85)", "oklch(84% 0.015 85)", "oklch(95% 0.015 85)"] },
+      "rule": { "role": "neutral", "displayName": "Filete", "tonalRamp": ["oklch(15% 0.02 85)", "oklch(26% 0.02 85)", "oklch(38% 0.02 85)", "oklch(49% 0.02 85)", "oklch(61% 0.02 85)", "oklch(72% 0.02 85)", "oklch(84% 0.02 85)", "oklch(95% 0.02 85)"] },
+      "sidebar-border": { "role": "secondary", "displayName": "Filete del gabinete", "tonalRamp": ["oklch(15% 0.05 165)", "oklch(26% 0.05 165)", "oklch(38% 0.05 165)", "oklch(49% 0.05 165)", "oklch(61% 0.05 165)", "oklch(72% 0.05 165)", "oklch(84% 0.05 165)", "oklch(95% 0.05 165)"] },
+      "dark-background": { "role": "neutral", "displayName": "Mesa nocturna", "tonalRamp": ["oklch(15% 0.025 165)", "oklch(26% 0.025 165)", "oklch(38% 0.025 165)", "oklch(49% 0.025 165)", "oklch(61% 0.025 165)", "oklch(72% 0.025 165)", "oklch(84% 0.025 165)", "oklch(95% 0.025 165)"] },
+      "dark-foreground": { "role": "neutral", "displayName": "Texto nocturno", "tonalRamp": ["oklch(15% 0.02 85)", "oklch(26% 0.02 85)", "oklch(38% 0.02 85)", "oklch(49% 0.02 85)", "oklch(61% 0.02 85)", "oklch(72% 0.02 85)", "oklch(84% 0.02 85)", "oklch(95% 0.02 85)"] },
+      "dark-primary": { "role": "primary", "displayName": "Acción nocturna", "tonalRamp": ["oklch(15% 0.16 32)", "oklch(26% 0.16 32)", "oklch(38% 0.16 32)", "oklch(49% 0.16 32)", "oklch(61% 0.16 32)", "oklch(72% 0.16 32)", "oklch(84% 0.16 32)", "oklch(95% 0.16 32)"] },
+      "dark-primary-foreground": { "role": "neutral", "displayName": "Tinta sobre acción nocturna", "tonalRamp": ["oklch(15% 0.02 40)", "oklch(26% 0.02 40)", "oklch(38% 0.02 40)", "oklch(49% 0.02 40)", "oklch(61% 0.02 40)", "oklch(72% 0.02 40)", "oklch(84% 0.02 40)", "oklch(95% 0.02 40)"] },
+      "dark-secondary": { "role": "neutral", "displayName": "Superficie nocturna secundaria", "tonalRamp": ["oklch(15% 0.04 165)", "oklch(26% 0.04 165)", "oklch(38% 0.04 165)", "oklch(49% 0.04 165)", "oklch(61% 0.04 165)", "oklch(72% 0.04 165)", "oklch(84% 0.04 165)", "oklch(95% 0.04 165)"] },
+      "dark-muted": { "role": "neutral", "displayName": "Superficie nocturna apagada", "tonalRamp": ["oklch(15% 0.035 165)", "oklch(26% 0.035 165)", "oklch(38% 0.035 165)", "oklch(49% 0.035 165)", "oklch(61% 0.035 165)", "oklch(72% 0.035 165)", "oklch(84% 0.035 165)", "oklch(95% 0.035 165)"] },
+      "dark-muted-foreground": { "role": "neutral", "displayName": "Texto nocturno secundario", "tonalRamp": ["oklch(15% 0.03 165)", "oklch(26% 0.03 165)", "oklch(38% 0.03 165)", "oklch(49% 0.03 165)", "oklch(61% 0.03 165)", "oklch(72% 0.03 165)", "oklch(84% 0.03 165)", "oklch(95% 0.03 165)"] },
+      "dark-border": { "role": "neutral", "displayName": "Borde nocturno", "tonalRamp": ["oklch(15% 0.04 165)", "oklch(26% 0.04 165)", "oklch(38% 0.04 165)", "oklch(49% 0.04 165)", "oklch(61% 0.04 165)", "oklch(72% 0.04 165)", "oklch(84% 0.04 165)", "oklch(95% 0.04 165)"] },
+      "dark-machine": { "role": "secondary", "displayName": "Gabinete nocturno", "tonalRamp": ["oklch(15% 0.025 165)", "oklch(26% 0.025 165)", "oklch(38% 0.025 165)", "oklch(49% 0.025 165)", "oklch(61% 0.025 165)", "oklch(72% 0.025 165)", "oklch(84% 0.025 165)", "oklch(95% 0.025 165)"] },
+      "dark-machine-deep": { "role": "secondary", "displayName": "Ranura nocturna", "tonalRamp": ["oklch(15% 0.02 165)", "oklch(26% 0.02 165)", "oklch(38% 0.02 165)", "oklch(49% 0.02 165)", "oklch(61% 0.02 165)", "oklch(72% 0.02 165)", "oklch(84% 0.02 165)", "oklch(95% 0.02 165)"] },
+      "dark-tape": { "role": "neutral", "displayName": "Cinta nocturna cálida", "tonalRamp": ["oklch(15% 0.025 85)", "oklch(26% 0.025 85)", "oklch(38% 0.025 85)", "oklch(49% 0.025 85)", "oklch(61% 0.025 85)", "oklch(72% 0.025 85)", "oklch(84% 0.025 85)", "oklch(95% 0.025 85)"] },
+      "dark-tape-dim": { "role": "neutral", "displayName": "Soporte de cinta nocturna", "tonalRamp": ["oklch(15% 0.03 85)", "oklch(26% 0.03 85)", "oklch(38% 0.03 85)", "oklch(49% 0.03 85)", "oklch(61% 0.03 85)", "oklch(72% 0.03 85)", "oklch(84% 0.03 85)", "oklch(95% 0.03 85)"] },
+      "dark-field": { "role": "neutral", "displayName": "Campo nocturno sobre cinta", "tonalRamp": ["oklch(15% 0.02 85)", "oklch(26% 0.02 85)", "oklch(38% 0.02 85)", "oklch(49% 0.02 85)", "oklch(61% 0.02 85)", "oklch(72% 0.02 85)", "oklch(84% 0.02 85)", "oklch(95% 0.02 85)"] },
+      "dark-sidebar-border": { "role": "secondary", "displayName": "Filete de gabinete nocturno", "tonalRamp": ["oklch(15% 0.04 165)", "oklch(26% 0.04 165)", "oklch(38% 0.04 165)", "oklch(49% 0.04 165)", "oklch(61% 0.04 165)", "oklch(72% 0.04 165)", "oklch(84% 0.04 165)", "oklch(95% 0.04 165)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Titular público", "purpose": "Voz de Archivo en el hero; no aplicar a toda pantalla privada." },
+      "headline": { "displayName": "Encabezado privado", "purpose": "PageHeader de la app." },
+      "title": { "displayName": "Título de cinta", "purpose": "PanelHeader." },
+      "body": { "displayName": "Explicación", "purpose": "Texto de auth y estados; marketing usa tamaños mayores." },
+      "label": { "displayName": "Etiqueta impresa", "purpose": "Doto en mayúsculas; variantes locales de tamaño." },
+      "number": { "displayName": "Monto impreso", "purpose": "Doto con font-variant-numeric: tabular-nums; tamaño según contexto." }
+    },
+    "shadows": [
+      { "name": "paper-sheet", "value": "8px 14px 32px color-mix(in srgb, #000 19%, transparent)", "purpose": "Papel apoyado, no tarjeta flotante." },
+      { "name": "keycap", "value": "0 3px 0 var(--machine-deep), inset 0 1px 0 #fff", "purpose": "Base física de tecla." },
+      { "name": "keycap-hover", "value": "0 5px 0 var(--machine-deep), inset 0 1px 0 #fff", "purpose": "Hover con translateY(-2px)." },
+      { "name": "keycap-active", "value": "0 1px 0 var(--machine-deep), inset 0 1px 0 #fff", "purpose": "Pulsación con translateY(1px)." },
+      { "name": "stamp-action", "value": "0 4px 0 #7C2419", "purpose": "Acceso, registro y acción de sidebar; CTA público usa 5px." },
+      { "name": "stamp-action-active", "value": "0 1px 0 #7C2419", "purpose": "Base al pulsar acción roja." }
+    ],
+    "motion": [
+      { "name": "tape-feed", "value": "700ms cubic-bezier(0.2, 0.8, 0.2, 1) both", "purpose": "Entrada de opacity 0 y translateY(-18px) rotate(-0.4deg) a posición natural." },
+      { "name": "total-reveal", "value": "700ms cubic-bezier(0.2, 0.8, 0.2, 1) 300ms both", "purpose": "Total de opacity 0, translateY(8px), tracking .08em a opacity 1, translateY(0), tracking -.02em." },
+      { "name": "keycap-transition", "value": "transform 140ms ease, box-shadow 140ms ease", "purpose": "Respuesta física de teclas; transición eliminada con reduced-motion." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce)", "purpose": "Sin tape-feed, total-reveal ni scroll suave; no implica desactivar todas las animaciones del producto." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Botón primario semántico", "kind": "button", "refersTo": "button-primary",
+      "description": "Control base compacto; sigue los tokens de tema, no la tecla pública.",
+      "html": "<button class=\"ds-primary\" type=\"button\">Guardar</button>",
+      "css": ".ds-primary{display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 10px;border:1px solid transparent;border-radius:var(--radius,4px);background:var(--primary);color:var(--primary-foreground);font:500 14px var(--font-archivo),sans-serif;transition:all 150ms;cursor:pointer}.ds-primary:hover{background:color-mix(in srgb,var(--primary) 80%,transparent)}.ds-primary:focus-visible{outline:none;border-color:var(--ring);box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 50%,transparent)}.ds-primary:active{transform:translateY(1px)}.ds-primary:disabled{pointer-events:none;opacity:.5}"
+    },
+    {
+      "name": "Botón outline", "kind": "button", "refersTo": "button-outline",
+      "description": "Acción secundaria con borde y fondo de mesa.",
+      "html": "<button class=\"ds-outline\" type=\"button\">Cancelar</button>",
+      "css": ".ds-outline{display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 10px;border:1px solid var(--border);border-radius:var(--radius,4px);background:var(--background);color:var(--foreground);font:500 14px var(--font-archivo),sans-serif;transition:all 150ms;cursor:pointer}.ds-outline:hover{background:var(--muted);color:var(--foreground)}.ds-outline:focus-visible{outline:none;border-color:var(--ring);box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 50%,transparent)}.ds-outline:active{transform:translateY(1px)}:host-context(.dark) .ds-outline{border-color:var(--input);background:color-mix(in srgb,var(--input) 30%,transparent)}:host-context(.dark) .ds-outline:hover{background:color-mix(in srgb,var(--input) 50%,transparent)}"
+    },
+    {
+      "name": "Botón ghost", "kind": "button", "refersTo": "button-ghost",
+      "description": "Acción terciaria sin relleno en reposo.",
+      "html": "<button class=\"ds-ghost\" type=\"button\">Ver detalle</button>",
+      "css": ".ds-ghost{display:inline-flex;align-items:center;justify-content:center;height:32px;padding:0 10px;border:1px solid transparent;border-radius:var(--radius,4px);background:transparent;color:var(--foreground);font:500 14px var(--font-archivo),sans-serif;transition:all 150ms;cursor:pointer}.ds-ghost:hover{background:var(--muted)}.ds-ghost:focus-visible{outline:none;border-color:var(--ring);box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 50%,transparent)}.ds-ghost:active{transform:translateY(1px)}"
+    },
+    {
+      "name": "Tecla roja de acceso", "kind": "button", "refersTo": "button-stamp",
+      "description": "Especialización de auth con base física; sin inventar acción de sesión.",
+      "html": "<button class=\"ds-stamp-button\" type=\"button\">ENTRAR A MI MES <svg aria-hidden=\"true\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><path d=\"M5 12h14m-7-7 7 7-7 7\"/></svg></button>",
+      "css": ".ds-stamp-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:100%;height:48px;border:1px solid transparent;border-radius:3px;background:var(--stamp);color:var(--tape);box-shadow:0 4px 0 #7C2419;font:800 10px/1.3 var(--font-doto),monospace;letter-spacing:.14em;transition:all 150ms;cursor:pointer}.ds-stamp-button:hover{background:color-mix(in srgb,var(--stamp) 90%,transparent)}.ds-stamp-button:focus-visible{outline:none;border-color:var(--ring);box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 50%,transparent)}.ds-stamp-button:active{transform:translateY(2px);box-shadow:0 1px 0 #7C2419}.ds-stamp-button:disabled{pointer-events:none;opacity:.5}"
+    },
+    {
+      "name": "Campo de acceso", "kind": "input", "refersTo": "input-auth",
+      "description": "Label, campo de papel y foco de sello. Placeholder aplica la regla global de papel.",
+      "html": "<label class=\"ds-field-label\" for=\"ds-email\">CORREO</label><input class=\"ds-field\" id=\"ds-email\" type=\"email\" autocomplete=\"email\" placeholder=\"tu@correo.cl\" />",
+      "css": ".ds-field-label{display:block;margin-bottom:6px;font:800 9px/1.3 var(--font-doto),monospace;letter-spacing:.14em;color:color-mix(in srgb,var(--ink) 70%,transparent)}.ds-field{width:100%;min-width:0;height:44px;padding:4px 12px;border:1px solid color-mix(in srgb,var(--ink) 40%,transparent);border-radius:3px;background:var(--field);color:var(--ink);font:400 14px var(--font-archivo),sans-serif;transition:color 150ms,border-color 150ms}.ds-field::placeholder{color:color-mix(in srgb,var(--ink) 68%,var(--field));opacity:1}.ds-field:focus-visible{outline:none;border-color:var(--stamp);box-shadow:0 0 0 3px color-mix(in srgb,var(--stamp) 25%,transparent)}.ds-field:disabled{opacity:.5;cursor:not-allowed}.ds-field[aria-invalid=true]{border-color:var(--destructive);box-shadow:0 0 0 3px color-mix(in srgb,var(--destructive) 20%,transparent)}"
+    },
+    {
+      "name": "Navegación privada activa", "kind": "nav", "refersTo": "nav-active",
+      "description": "Selección por fondo, filete y punto; aria-current en enlace.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Navegación de la app\"><a class=\"ds-nav-item\" href=\"#dashboard\" aria-current=\"page\"><svg aria-hidden=\"true\" width=\"16\" height=\"16\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\"><rect x=\"3\" y=\"3\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"14\" y=\"3\" width=\"7\" height=\"5\" rx=\"1\"/><rect x=\"14\" y=\"12\" width=\"7\" height=\"9\" rx=\"1\"/><rect x=\"3\" y=\"16\" width=\"7\" height=\"5\" rx=\"1\"/></svg>Inicio<span class=\"ds-nav-dot\" aria-hidden=\"true\"></span></a></nav>",
+      "css": ".ds-nav{padding:16px;background:var(--sidebar);color:var(--sidebar-foreground)}.ds-nav-item{display:flex;align-items:center;gap:12px;border-radius:3px;padding:10px 12px;background:var(--sidebar-accent);color:var(--sidebar-foreground);box-shadow:inset 3px 0 0 var(--sidebar-primary);font:400 12.5px var(--font-archivo),sans-serif;letter-spacing:.02em;text-decoration:none}.ds-nav-dot{margin-left:auto;width:6px;height:6px;border-radius:50%;background:var(--sidebar-primary)}.ds-nav-item:focus-visible{outline:2px solid var(--ring);outline-offset:2px}"
+    },
+    {
+      "name": "Badge primario", "kind": "chip", "refersTo": "badge-primary",
+      "description": "Etiqueta base de biblioteca; no confundir con botones de presupuesto.",
+      "html": "<span class=\"ds-badge\">Categoría</span>",
+      "css": ".ds-badge{display:inline-flex;align-items:center;justify-content:center;width:fit-content;height:20px;padding:2px 8px;border:1px solid transparent;border-radius:calc(var(--radius,4px)*2.6);background:var(--primary);color:var(--primary-foreground);font:500 12px var(--font-archivo),sans-serif;white-space:nowrap}"
+    },
+    {
+      "name": "Panel de cinta", "kind": "card", "refersTo": "paper-panel",
+      "description": "PaperPanel con perforaciones y total. El monto del snippet se declara ejemplo.",
+      "html": "<section class=\"ds-paper\"><h2 class=\"ds-paper-title\">Tu mes</h2><p class=\"ds-paper-label\">DATOS DE EJEMPLO</p><div class=\"ds-paper-total\"><span>TOTAL</span><strong>$2.400</strong></div></section>",
+      "css": ".ds-paper{position:relative;padding:28px 24px;background-color:var(--tape);color:var(--ink);background-image:repeating-linear-gradient(0deg,color-mix(in srgb,var(--ink) 2.5%,transparent) 0 1px,transparent 1px 5px);box-shadow:8px 14px 32px color-mix(in srgb,#000 19%,transparent)}.ds-paper:before,.ds-paper:after{content:'';position:absolute;top:0;bottom:0;width:8px;pointer-events:none;background-image:radial-gradient(circle at 50% 5px,color-mix(in srgb,var(--ink) 34%,transparent) 0 2.6px,transparent 2.8px);background-size:8px 14px}.ds-paper:before{left:0}.ds-paper:after{right:0}.ds-paper-title{margin:0;font:800 21px/1 var(--font-archivo),sans-serif;letter-spacing:-.03em}.ds-paper-label{font:800 8px/1.3 var(--font-doto),monospace;letter-spacing:.14em}.ds-paper-total{display:flex;justify-content:space-between;align-items:baseline;gap:16px;margin-top:24px;padding-top:8px;border-top:3px double currentColor;font:800 9px/1.3 var(--font-doto),monospace;letter-spacing:.14em}.ds-paper-total strong{font:800 28px/1 var(--font-doto),monospace;font-variant-numeric:tabular-nums;letter-spacing:.01em;color:var(--stamp)}"
+    },
+    {
+      "name": "Tecla de categoría decorativa", "kind": "custom", "refersTo": "category-key",
+      "description": "CategoryKeys es decorativo en código; este snippet no inventa un botón.",
+      "html": "<div class=\"ds-key\"><span class=\"ds-key-dot\" aria-hidden=\"true\"></span><span>ALIM</span></div>",
+      "css": ".ds-key{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:72px;aspect-ratio:1;border-radius:999px;background:var(--tape);color:var(--machine);box-shadow:0 3px 0 var(--machine-deep),inset 0 1px 0 #fff;font:400 7px var(--font-doto),monospace;letter-spacing:.08em;transition:transform 140ms ease,box-shadow 140ms ease}.ds-key-dot{width:12px;height:12px;border-radius:50%;background:#F97316}.ds-key:hover{transform:translateY(-2px);box-shadow:0 5px 0 var(--machine-deep),inset 0 1px 0 #fff}.ds-key:active{transform:translateY(1px);box-shadow:0 1px 0 var(--machine-deep),inset 0 1px 0 #fff}@media(prefers-reduced-motion:reduce){.ds-key{transition:none}}"
+    },
+    {
+      "name": "Sello impreso", "kind": "custom", "refersTo": "stamp",
+      "description": "Material reutilizable definido en globals.css; no equivale al componente de alerta de formulario.",
+      "html": "<span class=\"ds-stamp\">LÍMITE</span>",
+      "css": ".ds-stamp{display:inline-block;padding:.15rem .45rem;border:2px solid var(--stamp);background:var(--tape);color:var(--stamp);font-family:var(--font-doto),monospace;line-height:1.2;letter-spacing:.08em;text-transform:uppercase;transform:rotate(-2deg)}"
+    }
+  ],
+  "narrative": {
+    "northStar": "La tira de sumar",
+    "overview": "Una máquina sumadora de oficina: gabinete verde, cinta cálida, tinta oscura y rojo de sobreimpresión. Archivo da una voz directa a la interfaz; Doto convierte montos y etiquetas en impresión. El carácter nace de líneas de gasto, totales y límites legibles, no de ilustraciones financieras genéricas.\n\nLa expresión pública permite una máquina escénica y papel con relieve. La interfaz privada conserva ese material, pero prioriza densidad, navegación y lectura de datos. Los componentes de papel no se invierten a texto claro sobre verde al cambiar de tema: siguen siendo cinta con tinta.",
+    "keyCharacteristics": [
+      "Papel continuo con perforaciones y filete doble en totales.",
+      "Verde estructural; rojo para acciones, totales y avisos.",
+      "Archivo para leer; Doto para imprimir cifras y etiquetas breves.",
+      "Esquinas casi rectas y teclas de categoría circulares."
+    ],
+    "rules": [
+      { "name": "The Papel y tinta Rule", "body": "Cada superficie de cinta conserva `tape` con `ink`, también en oscuro; el gabinete y los controles semánticos sí cambian con el tema.", "section": "colors" },
+      { "name": "The Dos voces Rule", "body": "Archivo explica; Doto imprime. No trasladar párrafos, errores o navegación extensa a la tipografía punteada.", "section": "typography" }
+    ],
+    "dos": [
+      "**Do** conservar papel con tinta, filetes y totales alineados al ampliar la app.",
+      "**Do** usar Archivo para explicación y Doto tabular para montos en CLP sin decimales.",
+      "**Do** elegir tokens semánticos para el shell y tokens de material para la cinta.",
+      "**Do** acompañar color de estado con texto y mantener nombres accesibles en controles de icono.",
+      "**Do** rotular los datos sintéticos de demostración y usar solo datos de la cuenta en privado."
+    ],
+    "donts": [
+      "**Don't** sustituir la máquina por tarjetas flotantes, degradados decorativos o estética financiera genérica.",
+      "**Don't** invertir automáticamente el papel al cambiar a oscuro.",
+      "**Don't** convertir teclas decorativas en acciones aparentes sin implementar interacción y semántica.",
+      "**Don't** declarar revisión final, accesibilidad aprobada o pruebas superadas a partir de esta documentación."
+    ]
+  }
+}
