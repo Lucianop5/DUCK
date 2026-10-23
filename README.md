@@ -1,11 +1,14 @@
-# Gastos Hormiga
+# DUCK
+
+Repositorio del ecosistema DUCK. La primera aplicación implementada es **Gastos Hormiga**.
 
 Aplicación web de finanzas personales para registrar, administrar y analizar los pequeños gastos
 cotidianos —los "gastos hormiga"— que suelen pasar desapercibidos. Pensada para usuarios de Chile,
 con el peso chileno (CLP) como moneda principal.
 
-> **Estado:** Fase 2 completada y Fase 3 con la API de categorías, gastos y presupuestos implementada
-> sobre MySQL 8.4 en Docker. Falta construir la interfaz (Fase 4).
+> **Estado:** Gastos Hormiga tiene interfaz y API conectadas sobre MySQL 8.4: autenticación,
+> gastos, categorías, presupuestos, analítica y simulador. Pendientes OpenAPI/Swagger,
+> una suite E2E mantenida y la preparación para despliegue público.
 > Avance detallado en [`docs/progress.md`](docs/progress.md).
 
 ---
@@ -19,14 +22,14 @@ ahorrar si cambias un hábito.
 
 ## Características del MVP
 
-- [ ] Registro e inicio de sesión con sesiones en base de datos (Better Auth).
-- [ ] CRUD de gastos con filtros por fecha, categoría y método de pago, búsqueda y orden.
-- [ ] Categorías con color e ícono, más 9 categorías predeterminadas por usuario.
-- [ ] Presupuestos mensuales generales y por categoría, con alertas al 80 % y 100 %.
+- [x] Registro e inicio de sesión con sesiones en base de datos (Better Auth).
+- [x] CRUD de gastos con filtros por fecha/categoría, búsqueda y orden; método de pago en la API.
+- [x] Categorías con color e ícono, más 9 categorías predeterminadas por usuario.
+- [x] Presupuestos mensuales generales y por categoría, con alertas al 80 % y 100 %.
 - [ ] Dashboard con gasto de hoy, semana y mes, comparación mensual y promedio diario.
-- [ ] Evolución y distribución de gastos con Recharts, más ranking de gastos frecuentes.
-- [ ] Simulador de gastos hormiga (mensual y anual) sin guardar transacciones.
-- [ ] Modo claro/oscuro, diseño responsive y estados de carga, vacío y error.
+- [x] Evolución con Recharts, distribución por categoría y ranking de gastos frecuentes.
+- [x] Simulador de gastos hormiga (mensual y anual) sin guardar transacciones.
+- [x] Modo claro/oscuro, diseño responsive y estados de carga, vacío y error.
 - [ ] API REST versionada, documentada con OpenAPI 3.1.
 
 ## Stack
@@ -50,10 +53,11 @@ Decisiones y alternativas descartadas: [`docs/adr/`](docs/adr/).
 ## Arquitectura
 
 ```text
-gastos-hormiga/
+DUCK/
 ├── src/
 │   ├── app/
-│   │   ├── (public)/          landing, login, registro, recuperación
+│   │   ├── page.tsx           landing
+│   │   ├── (auth)/            login y registro
 │   │   ├── (app)/             dashboard, gastos, categorías, presupuestos, estadísticas
 │   │   └── api/
 │   │       ├── auth/[...all]/ Better Auth
@@ -69,10 +73,10 @@ gastos-hormiga/
 └── docs/
 ```
 
-La carpeta local se llama `DUCK` porque alojará los cuatro proyectos del ecosistema
-(Gastos Hormiga, WarrantyTracker, FuelTracker y LifeDashboard). **Este repositorio corresponde
-únicamente a Gastos Hormiga**, una aplicación independiente cuya API queda preparada para una
-integración futura con LifeDashboard mediante OAuth 2.0 / OpenID Connect.
+El repositorio **DUCK** está destinado a los cuatro proyectos del ecosistema: Gastos Hormiga,
+WarrantyTracker, FuelTracker y LifeDashboard. Por ahora, la implementación en la raíz es
+**Gastos Hormiga**; las otras aplicaciones aún no están implementadas. La integración futura
+con LifeDashboard mediante OAuth 2.0 / OpenID Connect está prevista, no implementada.
 
 Detalle en [`docs/architecture.md`](docs/architecture.md).
 
@@ -81,8 +85,8 @@ Detalle en [`docs/architecture.md`](docs/architecture.md).
 Requisitos: Node.js ≥ 20.9, Docker Desktop y Git.
 
 ```bash
-git clone https://github.com/Lucianop5/gastos-hormiga.git
-cd gastos-hormiga
+git clone https://github.com/Lucianop5/DUCK.git
+cd DUCK
 npm install
 cp .env.example .env        # completar secretos locales; nunca commitear .env
 npm run db:generate         # genera el cliente de Prisma

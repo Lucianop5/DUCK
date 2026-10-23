@@ -11,8 +11,8 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 | 1 — Análisis y diseño | ✅ Completada | Modelo de datos, contrato de API, pantallas y ADRs |
 | 2 — Configuración | ✅ Completada | Next.js, shadcn, Prisma, Better Auth, WSL2, Docker y MySQL 8.4 con migración aplicada |
 | 3 — Dominio y API | 🟡 En curso | API `/api/v1` de categorías, gastos y presupuestos implementada y probada sobre MySQL; falta OpenAPI |
-| 4 — Autenticación y UI | ⬜ Pendiente | Layout, pantallas de acceso y CRUD conectado |
-| 5 — Analítica y simulador | ⬜ Pendiente | Agregaciones, gráficos y simulador |
+| 4 — Autenticación y UI | 🟡 Implementada, revisión final pendiente | 12 pantallas, shell privado responsive, CRUD conectado y temas; recorridos de navegador comprobados |
+| 5 — Analítica y simulador | 🟡 Implementada, contrato OpenAPI pendiente | Agregaciones mensuales/anuales, resumen LifeDashboard, gráficos y simulación con ajustes por categoría |
 | 6 — Calidad y despliegue | ⬜ Pendiente | CI, Dockerfile y documentación final |
 
 ## Pivotes registrados
@@ -45,12 +45,54 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 - **2026-10-23** — **18 pruebas unitarias** y **9 pruebas de integración** contra MySQL, incluida la
   verificación de que no se pueden crear dos presupuestos generales para el mismo período.
 - **2026-10-23** — `npm run build`, `typecheck`, `lint`, `test` y `test:integration` en verde.
+- **2026-10-23** — Dirección visual confirmada por el autor: **La tira de sumar**.
+  Landing de máquina verde, cinta de papel, Archivo + Doto y total rojo. Contexto de producto
+  confirmado en `PRODUCT.md`, sin testimonios ni cifras comerciales inventadas.
+- **2026-10-23** — Landing, registro en dos pasos con presupuesto inicial opcional, login,
+  dashboard privado, historial con filtros/paginación, alta/edición/eliminación de gastos,
+  gabinete editable de categorías, presupuestos, analítica, simulador y ajustes de cuenta.
+- **2026-10-23** — Temas claro/oscuro, navegación móvil, estados de carga/error/vacío y
+  tablas alternativas accesibles a los gráficos. Formularios conectados a la API existente;
+  cambio de nombre y contraseña a través de Better Auth.
+- **2026-10-23** — Endpoints `/api/v1/analytics`, `/analytics/year`, `/summary` y `/simulator`.
+  El resumen es privado por sesión; OAuth 2.0 no está implementado.
+- **2026-10-23** — **14 pruebas de integración** contra MySQL (9 de aislamiento y 5 de analítica).
+  Las **18 pruebas unitarias** existentes siguen pasando.
+- **2026-10-23** — Recorrido Playwright con Edge: registro y presupuesto inicial, crear/editar/
+  buscar/eliminar gasto, crear/editar/eliminar categoría, foco al editar, simulación −20 % con
+  resultado esperado, cambio de tema, logout y login. Siete pantallas privadas sin desborde
+  horizontal a 390 px. Cuentas de prueba eliminadas al terminar.
+- **2026-10-23** — Revisión visual independiente: cinco correcciones resueltas (contraste de
+  placeholders, etiquetas rojas, foco al editar categoría, encabezados redundantes y sombras).
+  Veredicto **ship** limitado a esas cinco correcciones, no auditoría integral del producto.
+  Detector de diseño sin hallazgos; ESLint de `src` y `tests` sin errores.
+- **2026-10-23** — Sistema visual documentado desde el código en `DESIGN.md` y
+  `.impeccable/design.json`. Build final de producción correcto; vista local en
+  `http://localhost:3000/`.
+- **2026-10-23** — Repositorio de GitHub renombrado a **`Lucianop5/DUCK`**, remoto local y
+  enlaces de instalación actualizados. Código, documentación, capturas y configuración de
+  herramientas guardados en commits temáticos; archivos de entorno y estado local excluidos.
+
+## Revisión inicial de Dependabot
+
+Los cinco PR siguen abiertos y **no se han fusionado ni probado con sus nuevas versiones**.
+Se revisaron sus cambios de manifiesto; ninguno presenta comprobaciones de CI en GitHub.
+
+| PR | Actualización | Recomendación inicial |
+|---|---|---|
+| [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Revisar compatibilidad de la versión mayor con React Hook Form y Zod |
+| [#2](https://github.com/Lucianop5/DUCK/pull/2) | `@prisma/client` 6.19.3 → 7.10.1 | No fusionar aisladamente: el CLI `prisma` permanece en 6; requiere migración coordinada |
+| [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Candidato para pruebas de build, gráficos y responsive antes de fusionar |
+| [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` 19.3.0 → 19.3.1 | Revisar junto con `react-dom`, que el PR deja en 19.3.0 |
+| [#5](https://github.com/Lucianop5/DUCK/pull/5) | `typescript` 5 → 7 | Migración mayor: verificar compatibilidad de Next.js, herramientas y tipos |
 
 ## Pendientes inmediatos
 
-1. Fase 4: layout privado, landing, registro, login y pantallas de gastos, categorías y presupuestos.
-2. Fase 5: analítica con `DATE_FORMAT`/agregaciones SQL y simulador.
-3. Publicar OpenAPI 3.1 y Swagger UI en `/api/openapi` y `/api/docs`.
+1. Publicar OpenAPI 3.1 y Swagger UI en `/api/openapi` y `/api/docs`, incluidos los nuevos endpoints.
+2. Consolidar E2E repetibles en el repositorio y ampliar cobertura de presupuestos, paginación,
+   cambio de contraseña, teclado, zoom y temas. La comprobación manual/automatizada de esta
+   sesión no sustituye una suite mantenida.
+3. Fase 6: CI, despliegue y revisión de seguridad/accesibilidad antes de abrir el uso al público.
 
 ## Decisiones técnicas
 
