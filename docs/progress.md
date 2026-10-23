@@ -75,16 +75,24 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 
 ## Revisión inicial de Dependabot
 
-Los cinco PR siguen abiertos y **no se han fusionado ni probado con sus nuevas versiones**.
-Se revisaron sus cambios de manifiesto; ninguno presenta comprobaciones de CI en GitHub.
+Se revisaron los cinco cambios de manifiesto. Los PR #3 y #4 fueron probados localmente y
+fusionados con autorización del autor. Los PR #1, #2 y #5 siguen abiertos, sin fusionar ni
+probar sus versiones nuevas. No hay comprobaciones de CI en GitHub para estos PR.
 
 | PR | Actualización | Recomendación inicial |
 |---|---|---|
 | [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Revisar compatibilidad de la versión mayor con React Hook Form y Zod |
 | [#2](https://github.com/Lucianop5/DUCK/pull/2) | `@prisma/client` 6.19.3 → 7.10.1 | No fusionar aisladamente: el CLI `prisma` permanece en 6; requiere migración coordinada |
-| [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Candidato para pruebas de build, gráficos y responsive antes de fusionar |
-| [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` 19.3.0 → 19.3.1 | Revisar junto con `react-dom`, que el PR deja en 19.3.0 |
+| [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Fusionado tras build, pruebas y comprobación de gráficos en navegador |
+| [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` y `react-dom` 19.3.0 → 19.3.1 | Fusionado; se añadió React DOM a la actualización y se probó el conjunto |
 | [#5](https://github.com/Lucianop5/DUCK/pull/5) | `typescript` 5 → 7 | Migración mayor: verificar compatibilidad de Next.js, herramientas y tipos |
+
+**Validación de #3 y #4, por separado:** build de producción, ESLint de `src`/`tests`,
+18 pruebas unitarias y 14 pruebas de integración MySQL. En Edge con Playwright se comprobó
+registro de una cuenta temporal, creación de datos, renderizado de ambos gráficos con barras,
+vista móvil de 390 px, dashboard, navegación y alta de gasto mediante formulario, sin
+excepciones del navegador. Las cuentas temporales se eliminaron. Esta comprobación no cubre
+todos los recorridos E2E ni constituye una auditoría completa de accesibilidad.
 
 ## Pendientes inmediatos
 
