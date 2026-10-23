@@ -34,7 +34,7 @@ export async function listExpenses(userId: string, query: ExpenseQuery) {
   }
   if (query.categoryId) where.categoryId = query.categoryId;
   if (query.paymentMethod) where.paymentMethod = query.paymentMethod;
-  if (query.q) where.description = { contains: query.q, mode: "insensitive" };
+  if (query.q) where.description = { contains: query.q };
 
   const skip = (query.page - 1) * query.perPage;
 

@@ -72,7 +72,14 @@ describe.skipIf(!enabled)("aislamiento entre usuarios", () => {
   });
 
   afterAll(async () => {
-    await prisma.user.deleteMany({ where: { email: { startsWith: tag } } });
+    const userIds = [userA.id, userB.id];
+
+    // MySQL no garantiza el orden de los borrados en cascada: si elimina
+    // `category` antes que `expense`, la FK RESTRICT falla. Se borra en orden.
+    await prisma.expense.deleteMany({ where: { userId: { in: userIds } } });
+    await prisma.budget.deleteMany({ where: { userId: { in: userIds } } });
+    await prisma.category.deleteMany({ where: { userId: { in: userIds } } });
+    await prisma.user.deleteMany({ where: { id: { in: userIds } } });
     await prisma.$disconnect();
   });
 
@@ -142,5 +149,21 @@ describe.skipIf(!enabled)("aislamiento entre usuarios", () => {
     expect(budget.spent).toBe(2500);
     expect(budget.remaining).toBe(97500);
     expect(budget.status).toBe("ok");
+  });
+
+  it("impide dos presupuestos generales para el mismo período", async () => {
+    const data = {
+      userId: userB.id,
+      year: 2026,
+      month: 11,
+      categoryId: null,
+      amount: 50000,
+    };
+
+    await prisma.budget.create({ data });
+
+    await expect(
+      prisma.budget.create({ data: { ...data, amount: 60000 } }),
+    ).rejects.toMatchObject({ code: "P2002" });
   });
 });

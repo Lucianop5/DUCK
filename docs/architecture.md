@@ -15,7 +15,7 @@ Navegador
 Next.js (App Router)
    ├── Server Components  ──┐
    ├── Client Components  ──┤
-   └── /api/v1/* ───────────┴──► lib/services ──► Prisma ──► PostgreSQL
+   └── /api/v1/* ───────────┴──► lib/services ──► Prisma ──► MySQL
 ```
 
 - **Una sola fuente de verdad:** las reglas de negocio viven en `src/lib/services`; las rutas de
@@ -71,15 +71,18 @@ User ─1:N─ Category ─1:N─ Expense
 
 Detalles:
 
-- **Montos:** `Decimal(12,2)` en Prisma/PostgreSQL. Nunca `float`. La UI muestra CLP sin decimales.
+- **Montos:** `Decimal(12,2)` en Prisma/MySQL. Nunca `float`. La UI muestra CLP sin decimales.
 - **Fechas:** `date` es `DATE` (día calendario), no timestamp. Los períodos se calculan en
   `America/Santiago`.
 - **Índices:** `(userId, date DESC)`, `(userId, categoryId, date DESC)`, `(userId, amount DESC)`.
-- **Presupuesto general:** `categoryId` nulo. PostgreSQL considera los `NULL` distintos en un índice
-  único, por lo que se añadirá un índice único parcial en la migración
-  (`... WHERE "categoryId" IS NULL`), igual que para el caso por categoría.
+- **Presupuesto general:** `categoryId` nulo. MySQL considera los `NULL` distintos y no tiene
+  índices parciales, así que la migración crea un índice único funcional
+  `(userId, year, month, COALESCE(categoryId, '000…'))` que garantiza un solo presupuesto general
+  por período.
 - **Borrado de categoría con gastos:** la FK `RESTRICT` lo impide; la API responde `409` con el
   conteo y permite reasignar.
+- **Borrado de usuario:** MySQL no garantiza el orden de las cascadas; si se añade esa función, hay
+  que borrar gastos, presupuestos y categorías dentro de una transacción antes que el usuario.
 
 ## 4. API REST
 
@@ -110,7 +113,7 @@ simulador y el OpenAPI quedan para las fases 3 y 5.
 
 ## 5. Autenticación y seguridad
 
-- Better Auth con sesiones persistidas en PostgreSQL y cookie `HttpOnly`, `SameSite=Lax`,
+- Better Auth con sesiones persistidas en MySQL y cookie `HttpOnly`, `SameSite=Lax`,
   `Secure` en producción.
 - Contraseñas con el hash por defecto de Better Auth (scrypt), nunca en texto plano.
 - Protección de rutas en el layout privado y, sobre todo, en cada servicio y ruta de API.
@@ -121,6 +124,6 @@ simulador y el OpenAPI quedan para las fases 3 y 5.
 
 ## 6. Decisiones
 
-Ver [`docs/adr/`](adr/). Resumen: Next.js full-stack, TypeScript, Prisma/PostgreSQL, Better Auth,
+Ver [`docs/adr/`](adr/). Resumen: Next.js full-stack, TypeScript, Prisma/MySQL, Better Auth,
 API versionada con servicios compartidos, montos decimales, UUID, shadcn/ui, renderizado sin caché
-privada y PostgreSQL en Docker publicado en `:5433`.
+privada y MySQL 8.4 en Docker publicado en `:3307`.

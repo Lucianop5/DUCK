@@ -1,7 +1,9 @@
 # ADR-0010 — PostgreSQL en Docker publicado en :5433
 
 - **Fecha:** 2026-10-23
-- **Estado:** Aceptada
+- **Estado:** Superada por [ADR-0012](0012-mysql.md)
+
+> El contenedor pasó de PostgreSQL en `:5433` a MySQL 8.4 en `:3307`.
 
 ## Contexto
 

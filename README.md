@@ -4,8 +4,8 @@ Aplicación web de finanzas personales para registrar, administrar y analizar lo
 cotidianos —los "gastos hormiga"— que suelen pasar desapercibidos. Pensada para usuarios de Chile,
 con el peso chileno (CLP) como moneda principal.
 
-> **Estado:** Fase 3 en curso. La API de categorías, gastos y presupuestos está implementada y el
-> build pasa; falta aplicar la migración a una base de datos real y construir la interfaz.
+> **Estado:** Fase 2 completada y Fase 3 con la API de categorías, gastos y presupuestos implementada
+> sobre MySQL 8.4 en Docker. Falta construir la interfaz (Fase 4).
 > Avance detallado en [`docs/progress.md`](docs/progress.md).
 
 ---
@@ -39,9 +39,9 @@ ahorrar si cambias un hábito.
 | Formularios | react-hook-form + Zod |
 | Gráficos | Recharts |
 | Iconos | Lucide |
-| Base de datos | PostgreSQL 18 (Docker) |
+| Base de datos | MySQL 8.4 (Docker) |
 | ORM | Prisma 6 |
-| Autenticación | Better Auth (sesiones en PostgreSQL) |
+| Autenticación | Better Auth (sesiones en MySQL) |
 | Pruebas | Vitest + Testing Library + Playwright |
 | Calidad | ESLint, TypeScript estricto |
 
@@ -65,7 +65,7 @@ gastos-hormiga/
 │   ├── schema.prisma
 │   └── migrations/
 ├── tests/                     Vitest
-├── docker-compose.yml         PostgreSQL 18 en :5433
+├── docker-compose.yml         MySQL 8.4 en :3307
 └── docs/
 ```
 
@@ -85,26 +85,44 @@ git clone https://github.com/Lucianop5/gastos-hormiga.git
 cd gastos-hormiga
 npm install
 cp .env.example .env        # completar secretos locales; nunca commitear .env
-docker compose up -d        # PostgreSQL 18 en localhost:5433
-npm run db:migrate          # crea las tablas
+npm run db:generate         # genera el cliente de Prisma
+docker compose up -d        # MySQL 8.4 en localhost:3307
+npm run db:migrate          # aplica las migraciones
 npm run db:seed             # categorías predeterminadas de usuarios existentes
 npm run dev                 # http://localhost:3000
 ```
 
-### Sin Docker (alternativa local)
+### Conexión para MySQL Workbench
 
-Si Docker no puede iniciar su motor, usa el PostgreSQL instalado en el sistema. Crea un rol y una
-base dedicados (no reutilices el superusuario):
+| Campo | Valor |
+|---|---|
+| Hostname | `127.0.0.1` |
+| Port | `3307` |
+| Username | `gastos_hormiga` |
+| Password | la definida en `MYSQL_PASSWORD` dentro de `.env` |
+| Default schema | `gastos_hormiga` |
+
+El contenedor usa `:3307` en el host para no chocar con el servicio MySQL local de Windows en
+`:3306`.
+
+### Sin Docker (MySQL local)
+
+Si prefieres el MySQL instalado en Windows, crea la base y el usuario desde Workbench:
 
 ```sql
-CREATE ROLE gastos_hormiga LOGIN PASSWORD 'gastos_hormiga_dev';
-CREATE DATABASE gastos_hormiga OWNER gastos_hormiga;
+CREATE DATABASE gastos_hormiga
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE USER 'gastos_hormiga'@'localhost'
+  IDENTIFIED BY 'gastos_hormiga_dev';
+GRANT ALL PRIVILEGES ON gastos_hormiga.* TO 'gastos_hormiga'@'localhost';
+FLUSH PRIVILEGES;
 ```
 
-Luego ajusta `DATABASE_URL` a `localhost:5432` en `.env`. El resto de los comandos es idéntico.
+Luego apunta `DATABASE_URL` a `127.0.0.1:3306`. Docker con MySQL 8.4 es la vía recomendada porque es
+la versión que Prisma soporta oficialmente.
 
 Variables principales (ver `.env.example`): `DATABASE_URL`, `BETTER_AUTH_SECRET`,
-`BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` y las credenciales de PostgreSQL para Compose.
+`BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` y las credenciales de MySQL para Compose.
 
 ## Comandos
 
@@ -116,8 +134,9 @@ Variables principales (ver `.env.example`): `DATABASE_URL`, `BETTER_AUTH_SECRET`
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Verificación de tipos |
 | `npm test` | Pruebas unitarias con Vitest |
-| `npm run test:integration` | Pruebas contra PostgreSQL real (aislamiento entre usuarios) |
-| `npm run db:migrate` | Crear y aplicar migraciones |
+| `npm run test:integration` | Pruebas contra MySQL real (aislamiento entre usuarios) |
+| `npm run db:migrate` | Aplicar migraciones (`prisma migrate deploy`) |
+| `npm run db:migrate:dev` | Crear migraciones en desarrollo (requiere shadow database) |
 | `npm run db:studio` | Explorar la base de datos |
 | `npm run db:seed` | Crear las categorías predeterminadas faltantes |
 
@@ -139,7 +158,7 @@ npx playwright test      # E2E (Fase 6)
 
 - **Fase 0** — Repositorio, flujo de trabajo y documentación base.
 - **Fase 1** — Análisis y diseño (modelo de datos, API, pantallas, ADRs).
-- **Fase 2** — Configuración: Next.js, Tailwind, shadcn, Prisma, Better Auth y Docker.
+- **Fase 2** — Configuración: Next.js, Tailwind, shadcn, Prisma, Better Auth, MySQL y Docker.
 - **Fase 3** — Dominio y API: categorías, gastos, presupuestos, validación y permisos.
 - **Fase 4** — Autenticación, layout y pantallas conectadas.
 - **Fase 5** — Analítica, gráficos y simulador.

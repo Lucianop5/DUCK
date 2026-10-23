@@ -9,55 +9,48 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 |---|---|---|
 | 0 — Repositorio y flujo | ✅ Completada | Repo público recreado, documentación base y flujo con ramas/PR |
 | 1 — Análisis y diseño | ✅ Completada | Modelo de datos, contrato de API, pantallas y ADRs |
-| 2 — Configuración | 🟡 Casi completa | Next.js, shadcn, Prisma, Better Auth y migración listos; falta aplicar la migración |
-| 3 — Dominio y API | 🟡 En curso | API `/api/v1` de categorías, gastos y presupuestos implementada y probada |
+| 2 — Configuración | ✅ Completada | Next.js, shadcn, Prisma, Better Auth, WSL2, Docker y MySQL 8.4 con migración aplicada |
+| 3 — Dominio y API | 🟡 En curso | API `/api/v1` de categorías, gastos y presupuestos implementada y probada sobre MySQL; falta OpenAPI |
 | 4 — Autenticación y UI | ⬜ Pendiente | Layout, pantallas de acceso y CRUD conectado |
 | 5 — Analítica y simulador | ⬜ Pendiente | Agregaciones, gráficos y simulador |
 | 6 — Calidad y despliegue | ⬜ Pendiente | CI, Dockerfile y documentación final |
 
-## Pivote de arquitectura (2026-10-23)
+## Pivotes registrados
 
-El diseño inicial contemplaba Django + DRF + React/Vite. Se descartó por decisión del autor para
-adoptar **Next.js full-stack**, que concentra interfaz y API en un solo despliegue. El trabajo de
-diseño (modelo, contrato, pantallas) se conservó; la implementación se reinició.
+1. **Django + DRF + React/Vite → Next.js full-stack.** El trabajo de diseño se conservó y la
+   implementación se reinició sobre App Router.
+2. **PostgreSQL → MySQL 8.4.** Decisión del autor para trabajar con MySQL Workbench. Se evaluó el
+   costo y se ejecutó antes de tener datos. Ver [ADR-0012](adr/0012-mysql.md).
 
 ## Completado
 
-- **2026-10-23** — Inspección del entorno: Node 26.8, npm 11.19, PostgreSQL 18 local en `:5432`,
-  Docker Desktop 4.96.3 instalado.
+- **2026-10-23** — Inspección del entorno: Node 26.8, npm 11.19, PostgreSQL 18 y MySQL 26.7 locales,
+  Docker Desktop 4.96.3.
 - **2026-10-23** — Next.js 16.4.2 con TypeScript, App Router, Tailwind 4 y Turbopack. Build de
   producción en verde.
-- **2026-10-23** — shadcn/ui (preset Nova, base Radix) con 38 componentes: formularios, tablas,
-  diálogos, sidebar, gráficos y estados vacíos.
-- **2026-10-23** — Prisma 6.19.3 con PostgreSQL: modelos de Better Auth y de dominio, índices y
-  `Decimal(12,2)` para montos.
-- **2026-10-23** — Better Auth 1.7.12 con sesiones en base de datos, hash de contraseñas y cliente
-  React.
-- **2026-10-23** — Repositorio recreado. El anterior (con el andamiaje de Django y 36 issues) se
-  renombró a `gastos-hormiga-archivo` y se archivó; `gastos-hormiga` nace limpio con el commit de
-  bootstrap.
-- **2026-10-23** — Migración inicial generada **sin base de datos** con `prisma migrate diff`,
-  incluyendo índice único parcial del presupuesto general y `CHECK` de monto, mes, año, color y
-  descripción.
-- **2026-10-23** — Seed idempotente de las 9 categorías predeterminadas y hook de Better Auth que
-  las crea al registrarse.
-- **2026-10-23** — Validadores Zod para categorías, gastos y presupuestos; servicios con
-  aislamiento por `userId`; rutas `/api/v1` de categorías, gastos y presupuestos con sobre de error
-  uniforme y protección CSRF por origen.
-- **2026-10-23** — 18 pruebas unitarias (validadores y CSRF) y 8 pruebas de integración de
-  aislamiento entre usuarios (se ejecutan con `npm run test:integration`).
-- **2026-10-23** — `npm run build`, `typecheck`, `lint` y `test` en verde.
+- **2026-10-23** — shadcn/ui (preset Nova, base Radix) con 38 componentes.
+- **2026-10-23** — Repositorio recreado. El anterior (andamiaje de Django y 36 issues) se renombró a
+  `gastos-hormiga-archivo` y se archivó; `gastos-hormiga` nace limpio.
+- **2026-10-23** — **WSL2 instalado y Docker Desktop operativo** (motor 29.9.2, Compose 5.6.1).
+- **2026-10-23** — **MySQL 8.4 LTS en Docker** en `:3307`, con volumen persistente, charset utf8mb4
+  y healthcheck.
+- **2026-10-23** — Esquema Prisma migrado a MySQL: `CHAR(36)` para UUID, `VARCHAR` con longitudes
+  explícitas, `DATETIME(3)` y `DECIMAL(12,2)`.
+- **2026-10-23** — Migración inicial aplicada: tablas de Better Auth y dominio, más un índice único
+  funcional para el presupuesto general y `CHECK` de monto, mes, año, color y descripción.
+- **2026-10-23** — Better Auth con proveedor MySQL, IDs UUID y hook que crea las 9 categorías
+  predeterminadas al registrarse.
+- **2026-10-23** — Validadores Zod, servicios con aislamiento por `userId`, rutas `/api/v1` de
+  categorías, gastos y presupuestos, sobre de error uniforme y protección CSRF por origen.
+- **2026-10-23** — **18 pruebas unitarias** y **9 pruebas de integración** contra MySQL, incluida la
+  verificación de que no se pueden crear dos presupuestos generales para el mismo período.
+- **2026-10-23** — `npm run build`, `typecheck`, `lint`, `test` y `test:integration` en verde.
 
 ## Pendientes inmediatos
 
-1. **Obtener acceso a PostgreSQL.** Docker no puede iniciar porque WSL no está instalado; la
-   instancia local usa `scram-sha-256` y se desconoce la contraseña. Opciones:
-   - crear un rol y una base dedicados en el servicio local (`:5432`) y ajustar `DATABASE_URL`; o
-   - instalar WSL2 (requiere administrador y reinicio) y usar `docker compose up -d` (`:5433`).
-2. Aplicar `prisma migrate deploy` y ejecutar `npm run db:seed`.
-3. Registrar un usuario real y verificar que recibe sus 9 categorías.
-4. Ejecutar `npm run test:integration` contra la base real.
-5. Publicar el OpenAPI 3.1 y Swagger UI en `/api/openapi` y `/api/docs`.
+1. Fase 4: layout privado, landing, registro, login y pantallas de gastos, categorías y presupuestos.
+2. Fase 5: analítica con `DATE_FORMAT`/agregaciones SQL y simulador.
+3. Publicar OpenAPI 3.1 y Swagger UI en `/api/openapi` y `/api/docs`.
 
 ## Decisiones técnicas
 
@@ -65,30 +58,30 @@ diseño (modelo, contrato, pantallas) se conservó; la implementación se reinic
 |---|---|---|
 | 2026-10-23 | Next.js full-stack, sin backend separado | 0001 |
 | 2026-10-23 | TypeScript en todo el proyecto | 0002 |
-| 2026-10-23 | PostgreSQL + Prisma | 0003 |
+| 2026-10-23 | PostgreSQL + Prisma (reemplazada) | 0003 |
 | 2026-10-23 | Better Auth con sesiones en base de datos | 0004 |
 | 2026-10-23 | API REST versionada con servicios compartidos | 0005 |
 | 2026-10-23 | Montos `Decimal(12,2)` y CLP | 0006 |
 | 2026-10-23 | UUID como clave primaria | 0007 |
 | 2026-10-23 | shadcn/ui + Tailwind 4 + RHF/Zod | 0008 |
 | 2026-10-23 | Renderizado dinámico sin caché privada | 0009 |
-| 2026-10-23 | PostgreSQL en Docker en `:5433` | 0010 |
+| 2026-10-23 | PostgreSQL en Docker en `:5433` (reemplazada) | 0010 |
 | 2026-10-23 | Mantener Prisma tras evaluar Drizzle | 0011 |
+| 2026-10-23 | MySQL 8.4 en Docker en `:3307` | 0012 |
 
 ## Riesgos abiertos
 
-- **Docker Desktop sin WSL:** el motor no inicia (`wsl is not installed`). Instalar WSL2 exige
-  administrador y reinicio; no se hace de forma automática.
-- **Contraseña de PostgreSQL desconocida:** el servicio local usa `scram-sha-256`. Se necesita un
-  rol dedicado para el proyecto.
-- **Clúster PostgreSQL portable descartado:** al ejecutarlo desde esta sesión, un worker de
-  autovacuum murió con `0xC0000142` y el servidor se reinició. No es una vía confiable en este
-  entorno.
+- **Índice funcional fuera del schema.prisma:** Prisma no lo conoce. Si se genera una migración con
+  `prisma migrate dev` o `db pull`, hay que revisar que no intente eliminarlo. El flujo seguro es
+  `migrate diff` + edición manual del SQL, como en la migración inicial.
+- **MySQL no garantiza el orden de las cascadas:** al implementar borrado de cuenta habrá que
+  eliminar gastos, presupuestos y categorías dentro de una transacción.
+- **Servicio MySQL local en `:3306`:** queda intacto y no lo usa la aplicación; el proyecto vive en
+  el contenedor de `:3307`. No detenerlo salvo que se quiera liberar el puerto.
 - **8 vulnerabilidades altas en `npm audit`:** todas en herramientas de desarrollo (Prisma CLI,
-  ESLint y sus dependencias). No se ejecutará `npm audit fix --force` para evitar upgrades mayores
-  sin revisión; se reevalúan en Fase 6.
+  ESLint y sus dependencias). No se ejecutará `npm audit fix --force`; se reevalúan en Fase 6.
 - **shadcn/ui vendorizado:** el CSS base (`src/styles/shadcn-base.css`) se copió para no incluir el
-  CLI como dependencia de runtime. Al añadir componentes nuevos, revisar que no reintroduzca el
-  import `shadcn/tailwind.css`.
-- **Versiones muy recientes:** Next 16.4, Prisma 6.19 y Better Auth 1.7 se fijaron tras verificar
-  compatibilidad; cualquier actualización requiere repetir build y pruebas.
+  CLI como dependencia de runtime. Al añadir componentes nuevos, evitar el import
+  `shadcn/tailwind.css`.
+- **Versiones muy recientes:** Next 16.4, Prisma 6.19, Better Auth 1.7 y MySQL 8.4 se fijaron tras
+  verificar compatibilidad; cualquier actualización requiere repetir build y pruebas.
