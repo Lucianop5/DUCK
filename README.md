@@ -4,8 +4,8 @@ Aplicación web de finanzas personales para registrar, administrar y analizar lo
 cotidianos —los "gastos hormiga"— que suelen pasar desapercibidos. Pensada para usuarios de Chile,
 con el peso chileno (CLP) como moneda principal.
 
-> **Estado:** Fase 2 en curso. El proyecto compila y el esquema de datos está definido; falta levantar
-> PostgreSQL en Docker y aplicar la primera migración.
+> **Estado:** Fase 3 en curso. La API de categorías, gastos y presupuestos está implementada y el
+> build pasa; falta aplicar la migración a una base de datos real y construir la interfaz.
 > Avance detallado en [`docs/progress.md`](docs/progress.md).
 
 ---
@@ -87,9 +87,21 @@ npm install
 cp .env.example .env        # completar secretos locales; nunca commitear .env
 docker compose up -d        # PostgreSQL 18 en localhost:5433
 npm run db:migrate          # crea las tablas
-npm run db:generate
+npm run db:seed             # categorías predeterminadas de usuarios existentes
 npm run dev                 # http://localhost:3000
 ```
+
+### Sin Docker (alternativa local)
+
+Si Docker no puede iniciar su motor, usa el PostgreSQL instalado en el sistema. Crea un rol y una
+base dedicados (no reutilices el superusuario):
+
+```sql
+CREATE ROLE gastos_hormiga LOGIN PASSWORD 'gastos_hormiga_dev';
+CREATE DATABASE gastos_hormiga OWNER gastos_hormiga;
+```
+
+Luego ajusta `DATABASE_URL` a `localhost:5432` en `.env`. El resto de los comandos es idéntico.
 
 Variables principales (ver `.env.example`): `DATABASE_URL`, `BETTER_AUTH_SECRET`,
 `BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` y las credenciales de PostgreSQL para Compose.
@@ -103,10 +115,11 @@ Variables principales (ver `.env.example`): `DATABASE_URL`, `BETTER_AUTH_SECRET`
 | `npm run start` | Servir el build |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Verificación de tipos |
-| `npm test` | Pruebas con Vitest |
+| `npm test` | Pruebas unitarias con Vitest |
+| `npm run test:integration` | Pruebas contra PostgreSQL real (aislamiento entre usuarios) |
 | `npm run db:migrate` | Crear y aplicar migraciones |
 | `npm run db:studio` | Explorar la base de datos |
-| `npm run db:seed` | Cargar datos de ejemplo (identificados como tales) |
+| `npm run db:seed` | Crear las categorías predeterminadas faltantes |
 
 ## API
 
@@ -117,8 +130,9 @@ Contrato en [`docs/api.md`](docs/api.md); OpenAPI en `/api/openapi` y Swagger UI
 ## Pruebas
 
 ```bash
-npm test            # Vitest
-npx playwright test # E2E (Fase 6)
+npm test                 # unitarias (sin base de datos)
+npm run test:integration # requieren DATABASE_URL accesible
+npx playwright test      # E2E (Fase 6)
 ```
 
 ## Roadmap

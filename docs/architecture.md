@@ -90,9 +90,8 @@ Detalles:
 | GET, PATCH, DELETE | `/api/v1/categories/{id}` | Detalle, edición, borrado |
 | GET, POST | `/api/v1/expenses` | Listar con filtros / crear |
 | GET, PATCH, DELETE | `/api/v1/expenses/{id}` | Detalle, edición, borrado |
-| GET, POST | `/api/v1/budgets` | Listar por año y mes / crear |
-| GET, PATCH, DELETE | `/api/v1/budgets/{id}` | Detalle, edición, borrado |
-| GET | `/api/v1/budgets/status` | Uso, disponible, porcentaje y semáforo |
+| GET, PUT | `/api/v1/budgets` | Listar con gasto real / crear o reemplazar |
+| GET, PATCH, DELETE | `/api/v1/budgets/{id}` | Detalle, cambio de monto, borrado |
 | GET | `/api/v1/analytics/summary` | KPIs del período |
 | GET | `/api/v1/analytics/categories` | Distribución por categoría |
 | GET | `/api/v1/analytics/trends` | Serie temporal |
@@ -102,8 +101,12 @@ Detalles:
 | GET | `/api/v1/health` | Healthcheck |
 | GET | `/api/openapi`, `/api/docs` | OpenAPI 3.1 y Swagger UI |
 
-Convenciones: paginación `page`/`pageSize` (20, máximo 100), errores
-`{ detail, code, errors }`, `404` para recursos ajenos, validación con Zod en el borde.
+Convenciones: paginación `page`/`perPage` (20, máximo 100), errores
+`{ error: { code, message, details } }`, `404` para recursos ajenos, validación con Zod en el borde
+y rechazo de escrituras con `Origin` ajeno.
+
+Categorías, gastos y presupuestos ya están implementados en `src/app/api/v1/`; la analítica, el
+simulador y el OpenAPI quedan para las fases 3 y 5.
 
 ## 5. Autenticación y seguridad
 

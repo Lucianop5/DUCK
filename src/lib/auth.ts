@@ -3,6 +3,7 @@ import { prismaAdapter } from "better-auth/adapters/prisma";
 import { nextCookies } from "better-auth/next-js";
 
 import { prisma } from "@/lib/prisma";
+import { createDefaultCategories } from "@/lib/services/categories";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: "postgresql" }),
@@ -21,6 +22,17 @@ export const auth = betterAuth({
   user: {
     additionalFields: {
       timezone: { type: "string", input: false, defaultValue: "America/Santiago" },
+    },
+  },
+  databaseHooks: {
+    user: {
+      create: {
+        // Cada cuenta nace con sus nueve categorías. Si el hook falla,
+        // `ensureDefaultCategories` las repara en el siguiente acceso.
+        after: async (user) => {
+          await createDefaultCategories(user.id);
+        },
+      },
     },
   },
   plugins: [nextCookies()],
