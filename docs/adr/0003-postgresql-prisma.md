@@ -1,7 +1,9 @@
 # ADR-0003 — PostgreSQL + Prisma
 
 - **Fecha:** 2026-10-23
-- **Estado:** Aceptada
+- **Estado:** Superada por [ADR-0012](0012-mysql.md)
+
+> Esta decisión se revirtió al adoptar MySQL 8.4. Se conserva como registro del análisis original.
 
 ## Contexto
 

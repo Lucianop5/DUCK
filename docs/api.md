@@ -1,38 +1,59 @@
 # Contrato de la API
 
-Documentación resumida de `/api/v1/`. La fuente de verdad ejecutable será el OpenAPI 3.1 en
-`/api/openapi` (Fase 3).
+Documentación de `/api/v1/`. La especificación OpenAPI 3.1 se publicará en `/api/openapi` y la
+interfaz Swagger en `/api/docs` durante la Fase 3.
 
 ## Convenciones
 
-- JSON UTF-8; fechas `YYYY-MM-DD`; zona `America/Santiago`.
-- Autenticación: sesión de Better Auth (cookie `HttpOnly`).
-- Paginación: `?page=1&pageSize=20` → `{ data, page, pageSize, total, totalPages }`.
-- Errores:
+- JSON UTF-8; fechas de calendario `YYYY-MM-DD`; moneda CLP.
+- Autenticación: sesión de Better Auth (cookie `HttpOnly` + `SameSite=Lax`).
+- Toda consulta se filtra por el usuario de la sesión. Un recurso de otro usuario responde `404`,
+  nunca `403`, para no filtrar su existencia.
+- Las escrituras rechazan peticiones con `Origin` ajeno (protección CSRF).
+- Paginación: `?page=1&perPage=20` (máximo 100).
+
+### Respuesta exitosa
+
+```json
+{ "data": { } }
+```
+
+### Lista paginada
 
 ```json
 {
-  "detail": "No se pudo procesar la solicitud.",
-  "code": "validation_error",
-  "errors": { "amount": ["El monto debe ser mayor que cero."] }
+  "data": {
+    "items": [],
+    "meta": { "page": 1, "perPage": 20, "total": 0, "totalPages": 1 }
+  }
 }
 ```
 
-- Recursos de otro usuario: `404`.
-- Códigos: `400` validación, `401` sin sesión, `403` permiso, `404` inexistente, `409` conflicto,
-  `429` rate limit, `500` error interno.
+### Error
+
+```json
+{
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Revisa los datos enviados.",
+    "details": [{ "path": "amount", "message": "El monto debe ser mayor que cero" }]
+  }
+}
+```
+
+Códigos HTTP: `400` JSON inválido, `401` sin sesión, `403` origen no permitido, `404` inexistente,
+`409` conflicto, `422` validación, `500` error interno.
 
 ## Endpoints
 
 | Método | Ruta | Estado |
 |---|---|---|
-| GET, POST | `/api/v1/categories` | Planificado |
-| GET, PATCH, DELETE | `/api/v1/categories/{id}` | Planificado |
-| GET, POST | `/api/v1/expenses` | Planificado |
-| GET, PATCH, DELETE | `/api/v1/expenses/{id}` | Planificado |
-| GET, POST | `/api/v1/budgets` | Planificado |
-| GET, PATCH, DELETE | `/api/v1/budgets/{id}` | Planificado |
-| GET | `/api/v1/budgets/status` | Planificado |
+| GET, POST | `/api/v1/categories` | Implementado |
+| GET, PATCH, DELETE | `/api/v1/categories/{id}` | Implementado |
+| GET, POST | `/api/v1/expenses` | Implementado |
+| GET, PATCH, DELETE | `/api/v1/expenses/{id}` | Implementado |
+| GET, PUT | `/api/v1/budgets` | Implementado |
+| GET, PATCH, DELETE | `/api/v1/budgets/{id}` | Implementado |
 | GET | `/api/v1/analytics/summary` | Planificado |
 | GET | `/api/v1/analytics/categories` | Planificado |
 | GET | `/api/v1/analytics/trends` | Planificado |
@@ -40,13 +61,98 @@ Documentación resumida de `/api/v1/`. La fuente de verdad ejecutable será el O
 | GET | `/api/v1/analytics/top` | Planificado |
 | POST | `/api/v1/simulator` | Planificado |
 | GET | `/api/v1/health` | Planificado |
+| GET | `/api/openapi` | Planificado |
 
-### Filtros de gastos
+### Categorías
 
-`from`, `to` (fechas), `categoryId`, `paymentMethod`, `search` (descripción),
-`sort` (`date|-date|amount|-amount`) y paginación.
+`GET /api/v1/categories` devuelve las categorías del usuario con `_count.expenses`, ordenadas por
+predeterminadas y luego por nombre.
 
-### Simulador
+```json
+{
+  "data": [
+    {
+      "id": "uuid",
+      "name": "Alimentación",
+      "color": "#F97316",
+      "icon": "utensils",
+      "isDefault": true,
+      "_count": { "expenses": 12 }
+    }
+  ]
+}
+```
+
+`POST` crea una categoría personalizada:
+
+```json
+{ "name": "Café", "color": "#92400E", "icon": "coffee" }
+```
+
+`PATCH` acepta cualquiera de esos campos. `DELETE` responde `409` si la categoría tiene gastos o
+presupuestos asociados.
+
+### Gastos
+
+`GET /api/v1/expenses` acepta:
+
+| Parámetro | Tipo | Descripción |
+|---|---|---|
+| `page`, `perPage` | entero | Paginación (`perPage` ≤ 100) |
+| `from`, `to` | fecha | Rango inclusivo |
+| `categoryId` | UUID | Filtra por categoría |
+| `paymentMethod` | enum | `CASH`, `DEBIT`, `CREDIT`, `TRANSFER`, `WALLET`, `OTHER` |
+| `q` | texto | Búsqueda parcial sin distinguir mayúsculas (máx. 80) |
+| `sort` | enum | `date_desc` (defecto), `date_asc`, `amount_desc`, `amount_asc` |
+
+```json
+{
+  "amount": 2500,
+  "description": "Café con leche",
+  "date": "2026-10-23",
+  "categoryId": "uuid",
+  "paymentMethod": "DEBIT"
+}
+```
+
+El monto debe ser positivo, con hasta dos decimales y un máximo de `9.999.999.999,99`.
+
+### Presupuestos
+
+`GET /api/v1/budgets?year=2026&month=10` devuelve el presupuesto general (`categoryId: null`) y los
+presupuestos por categoría, con el gasto real del mes ya calculado:
+
+```json
+{
+  "data": [
+    {
+      "id": "uuid",
+      "categoryId": null,
+      "category": null,
+      "year": 2026,
+      "month": 10,
+      "amount": 500000,
+      "spent": 425000,
+      "remaining": 75000,
+      "percentage": 85,
+      "status": "warning"
+    }
+  ]
+}
+```
+
+`status` es `ok` (< 80 %), `warning` (≥ 80 %) o `exceeded` (≥ 100 %).
+
+`PUT /api/v1/budgets` crea o reemplaza un presupuesto. Es idempotente por
+`(usuario, año, mes, categoría)`, donde `categoryId: null` representa el presupuesto general.
+
+```json
+{ "year": 2026, "month": 10, "categoryId": null, "amount": 500000 }
+```
+
+`PATCH /api/v1/budgets/{id}` solo cambia el monto; `DELETE` lo elimina.
+
+## Simulador
 
 ```json
 { "name": "Café", "unitPrice": 2500, "frequency": 20, "unit": "month" }
@@ -57,6 +163,7 @@ Documentación resumida de `/api/v1/`. La fuente de verdad ejecutable será el O
 ```
 
 Frecuencia `day` se anualiza con 365/12 y `week` con 52/12; el resultado se redondea a peso entero.
+No guarda transacciones.
 
 ## Integración futura con LifeDashboard
 

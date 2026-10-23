@@ -1,0 +1,159 @@
+{
+  "title": "Elige la dirección visual",
+  "question": "La tira de sumar lidera la mano. ¿La construimos, tomas una alterna o pides otra?",
+  "options": [
+    {
+      "id": "assigned",
+      "kind": "assigned",
+      "label": "La tira de sumar",
+      "kicker": "THE ROLL",
+      "lineage": "Máquina sumadora de oficina y su cinta de papel",
+      "thesis": "Cada gasto es una línea impresa; el total es la única verdad.",
+      "palette": ["#17352D", "#F3EFE4", "#171614", "#D04532"],
+      "materials": ["cinta de papel", "esmalte verde", "tinta roja", "teclas"],
+      "viewport": "La página es una máquina verde: la cinta sale por una ranura y baja con el mes impreso, el total en rojo y la llave para anotar a la izquierda.",
+      "risk": "La cinta puede volverse un truco si la app no la usa para trabajar de verdad.",
+      "raised": [
+        {
+          "from": "Cuarto oscuro",
+          "raise": "El total del mes aparece de una sola vez, como una copia que se revela, en lugar de contar en pedazos."
+        },
+        {
+          "from": "Cielo de seda",
+          "raise": "Presupuesto y gasto real se imprimen como dos bandas sobrepuestas; el cruce es el saldo y siempre lleva etiqueta, nunca solo color."
+        },
+        {
+          "from": "Instalador shareware",
+          "raise": "El alta es una secuencia corta y validada con un avance impreso; no se puede saltar un paso."
+        },
+        {
+          "from": "Gabinete chaekgeori",
+          "raise": "Las categorías viven en un solo gabinete de compartimentos con etiqueta impresa, no en una fila de tarjetas iguales."
+        }
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "model-pick",
+      "kind": "pick",
+      "label": "Estado de cuenta intervenido",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "Cartola bancaria y lápiz rojo",
+      "thesis": "El gasto hormiga se ve cuando alguien lo encierra en rojo.",
+      "palette": ["#DDE7DD", "#17232B", "#C63C32", "#F2E45E"],
+      "materials": ["papel de seguridad", "tinta de cartola", "lápiz rojo", "resaltador"],
+      "viewport": "Una cartola real ocupa la página; un círculo rojo encierra las líneas pequeñas, el total se escribe al margen y el botón es un sello de goma.",
+      "risk": "Puede leerse como banca tradicional y no como una app personal.",
+      "html": ".impeccable/mocks/decision/model-pick.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-riso",
+      "kind": "challenger",
+      "catalogId": "risograph-web-system",
+      "label": "Risografía de dos tintas",
+      "verdict": "competitive",
+      "lineage": "Risógrafo, dos tintas y papel con grano",
+      "thesis": "El mes como una hoja impresa en rosa fluorescente y azul federal.",
+      "palette": ["#F4EEDF", "#2447FF", "#FF4F8B", "#FFD23F"],
+      "materials": ["papel mate", "tinta fluorescente", "grano", "registro desalineado"],
+      "viewport": "Titular enorme en azul con sombra rosa; a la derecha, una hoja impresa con las líneas del mes y el total sobreimpreso.",
+      "risk": "La novedad gráfica puede competir con la claridad de los montos.",
+      "case": "Aguanta la claridad del producto y suma una identidad de imprenta; pierde en identificación frente al objeto cotidiano que es la sumadora.",
+      "html": ".impeccable/mocks/decision/challenger-riso.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-papercut",
+      "kind": "challenger",
+      "catalogId": "craft-making-lowicz-layered-papercut",
+      "label": "Papel recortado en capas",
+      "verdict": "competitive",
+      "lineage": "Recorte de papel en capas planas",
+      "thesis": "Cada categoría es una hoja; el mes se entiende al apilarlas.",
+      "palette": ["#F1E6D2", "#C94F3D", "#2F6B5E", "#D9A441"],
+      "materials": ["papel de color", "corte", "pegamento", "sin sombras"],
+      "viewport": "Una pila de hojas recortadas a la derecha; la de arriba lleva el total y las de abajo las categorías, todas con borde de tinta.",
+      "risk": "El objeto artesanal puede pesar más que la herramienta.",
+      "case": "La profundidad por superposición traduce bien el presupuesto; la identificación con una artesanía ajena es más débil.",
+      "html": ".impeccable/mocks/decision/challenger-papercut.html",
+      "htmlFrame": "1440x900"
+    },
+    {
+      "id": "challenger-darkroom",
+      "kind": "challenger",
+      "catalogId": "signals-instruments-darkroom-safelight-bay",
+      "label": "Cuarto oscuro",
+      "verdict": "declined",
+      "lineage": "Laboratorio fotográfico bajo luz ámbar",
+      "thesis": "El mes se revela como una foto bajo luz ámbar.",
+      "palette": ["#140C07", "#E8A33D", "#C9BFAE", "#3D3328"],
+      "materials": ["luz de seguridad", "papel fotosensible", "bandejas", "temporizador"],
+      "viewport": "Un cuarto oscuro con una copia del mes flotando en la bandeja; el total aparece bajo la luz ámbar.",
+      "risk": "El ritual del revelado tapa la tarea diaria de anotar.",
+      "kept": "La aparición continua: el total del mes se revela de una vez, no en pedazos."
+    },
+    {
+      "id": "challenger-silk",
+      "kind": "challenger",
+      "catalogId": "generative-art-computational-color-chord-counterpoint",
+      "label": "Cielo de seda",
+      "verdict": "declined",
+      "lineage": "Bandas de seda translúcida sobre un patio",
+      "thesis": "Las categorías son bandas de seda que se cruzan y suman.",
+      "palette": ["#F7F5EE", "#3B4C9A", "#A33B3B", "#D9A441"],
+      "materials": ["seda translúcida", "luz de patio", "superposición"],
+      "viewport": "Un patio con bandas de seda tensadas; cada cruce muestra una suma y el cielo blanco es el descanso.",
+      "risk": "La metáfora abstracta no dice cuánto dinero hay.",
+      "kept": "La superposición como estado con significado: presupuesto y real se cruzan y el cruce se etiqueta."
+    },
+    {
+      "id": "challenger-shareware",
+      "kind": "challenger",
+      "catalogId": "digital-design-canon-shareware-installer-screens",
+      "label": "Instalador shareware",
+      "verdict": "declined",
+      "lineage": "Asistente de instalación de los noventa",
+      "thesis": "Configurar la app es un instalador de 1994: un paso a la vez.",
+      "palette": ["#C0C0C0", "#1A1A1A", "#000080", "#F2C94C"],
+      "materials": ["cromo biselado", "banner dithered", "barra de progreso"],
+      "viewport": "Un diálogo gris con banner lateral, campo de serie y una barra que avanza en bloques.",
+      "risk": "El chiste retro socava la confianza en una app de dinero.",
+      "kept": "El alta como secuencia corta y validada, con un avance visible que no deja saltarse pasos."
+    },
+    {
+      "id": "challenger-chaekgeori",
+      "kind": "challenger",
+      "catalogId": "graphic-worlds-publishing-chaekgeori-reverse-perspective",
+      "label": "Gabinete chaekgeori",
+      "verdict": "declined",
+      "lineage": "Pintura coreana de libros y objetos",
+      "thesis": "Las categorías son compartimentos de un gabinete que se abre hacia ti.",
+      "palette": ["#EFE6D3", "#2F5D50", "#B5523B", "#C9A227"],
+      "materials": ["pigmento mineral", "seda", "perspectiva inversa"],
+      "viewport": "Un gabinete de estantes que se ensanchan al fondo; cada caja guarda una categoría y su monto.",
+      "risk": "La perspectiva inversa desorienta cuando el usuario solo quiere leer cifras.",
+      "kept": "Las categorías como compartimentos de un solo gabinete, no como tarjetas idénticas."
+    }
+  ],
+  "reroll": {
+    "registers": ["safer", "bolder"]
+  },
+  "buildPath": {
+    "value": "code"
+  },
+  "canon": true,
+  "canonCard": {
+    "kind": "canon",
+    "label": "La categoría estándar",
+    "thesis": "Lo que esta categoría ya sabe hacer, ejecutado con oficio.",
+    "palette": ["#FFFFFF", "#0F172A", "#2563EB"],
+    "materials": ["grilla limpia", "tipografía de sistema", "captura del producto"],
+    "viewport": "Titular, subtítulo, botón azul y una captura del panel; tres beneficios debajo.",
+    "risk": "Indistinguible de la competencia por diseño.",
+    "html": ".impeccable/mocks/decision/canon.html",
+    "htmlFrame": "1440x900"
+  },
+  "steer": true
+}

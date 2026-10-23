@@ -1,11 +1,14 @@
-# Gastos Hormiga
+# DUCK
+
+Repositorio del ecosistema DUCK. La primera aplicación implementada es **Gastos Hormiga**.
 
 Aplicación web de finanzas personales para registrar, administrar y analizar los pequeños gastos
 cotidianos —los "gastos hormiga"— que suelen pasar desapercibidos. Pensada para usuarios de Chile,
 con el peso chileno (CLP) como moneda principal.
 
-> **Estado:** Fase 2 en curso. El proyecto compila y el esquema de datos está definido; falta levantar
-> PostgreSQL en Docker y aplicar la primera migración.
+> **Estado:** Gastos Hormiga tiene interfaz y API conectadas sobre MySQL 8.4: autenticación,
+> gastos, categorías, presupuestos, analítica y simulador. Pendientes OpenAPI/Swagger,
+> una suite E2E mantenida y la preparación para despliegue público.
 > Avance detallado en [`docs/progress.md`](docs/progress.md).
 
 ---
@@ -19,14 +22,14 @@ ahorrar si cambias un hábito.
 
 ## Características del MVP
 
-- [ ] Registro e inicio de sesión con sesiones en base de datos (Better Auth).
-- [ ] CRUD de gastos con filtros por fecha, categoría y método de pago, búsqueda y orden.
-- [ ] Categorías con color e ícono, más 9 categorías predeterminadas por usuario.
-- [ ] Presupuestos mensuales generales y por categoría, con alertas al 80 % y 100 %.
+- [x] Registro e inicio de sesión con sesiones en base de datos (Better Auth).
+- [x] CRUD de gastos con filtros por fecha/categoría, búsqueda y orden; método de pago en la API.
+- [x] Categorías con color e ícono, más 9 categorías predeterminadas por usuario.
+- [x] Presupuestos mensuales generales y por categoría, con alertas al 80 % y 100 %.
 - [ ] Dashboard con gasto de hoy, semana y mes, comparación mensual y promedio diario.
-- [ ] Evolución y distribución de gastos con Recharts, más ranking de gastos frecuentes.
-- [ ] Simulador de gastos hormiga (mensual y anual) sin guardar transacciones.
-- [ ] Modo claro/oscuro, diseño responsive y estados de carga, vacío y error.
+- [x] Evolución con Recharts, distribución por categoría y ranking de gastos frecuentes.
+- [x] Simulador de gastos hormiga (mensual y anual) sin guardar transacciones.
+- [x] Modo claro/oscuro, diseño responsive y estados de carga, vacío y error.
 - [ ] API REST versionada, documentada con OpenAPI 3.1.
 
 ## Stack
@@ -39,9 +42,9 @@ ahorrar si cambias un hábito.
 | Formularios | react-hook-form + Zod |
 | Gráficos | Recharts |
 | Iconos | Lucide |
-| Base de datos | PostgreSQL 18 (Docker) |
+| Base de datos | MySQL 8.4 (Docker) |
 | ORM | Prisma 6 |
-| Autenticación | Better Auth (sesiones en PostgreSQL) |
+| Autenticación | Better Auth (sesiones en MySQL) |
 | Pruebas | Vitest + Testing Library + Playwright |
 | Calidad | ESLint, TypeScript estricto |
 
@@ -50,10 +53,11 @@ Decisiones y alternativas descartadas: [`docs/adr/`](docs/adr/).
 ## Arquitectura
 
 ```text
-gastos-hormiga/
+DUCK/
 ├── src/
 │   ├── app/
-│   │   ├── (public)/          landing, login, registro, recuperación
+│   │   ├── page.tsx           landing
+│   │   ├── (auth)/            login y registro
 │   │   ├── (app)/             dashboard, gastos, categorías, presupuestos, estadísticas
 │   │   └── api/
 │   │       ├── auth/[...all]/ Better Auth
@@ -65,14 +69,14 @@ gastos-hormiga/
 │   ├── schema.prisma
 │   └── migrations/
 ├── tests/                     Vitest
-├── docker-compose.yml         PostgreSQL 18 en :5433
+├── docker-compose.yml         MySQL 8.4 en :3307
 └── docs/
 ```
 
-La carpeta local se llama `DUCK` porque alojará los cuatro proyectos del ecosistema
-(Gastos Hormiga, WarrantyTracker, FuelTracker y LifeDashboard). **Este repositorio corresponde
-únicamente a Gastos Hormiga**, una aplicación independiente cuya API queda preparada para una
-integración futura con LifeDashboard mediante OAuth 2.0 / OpenID Connect.
+El repositorio **DUCK** está destinado a los cuatro proyectos del ecosistema: Gastos Hormiga,
+WarrantyTracker, FuelTracker y LifeDashboard. Por ahora, la implementación en la raíz es
+**Gastos Hormiga**; las otras aplicaciones aún no están implementadas. La integración futura
+con LifeDashboard mediante OAuth 2.0 / OpenID Connect está prevista, no implementada.
 
 Detalle en [`docs/architecture.md`](docs/architecture.md).
 
@@ -81,18 +85,48 @@ Detalle en [`docs/architecture.md`](docs/architecture.md).
 Requisitos: Node.js ≥ 20.9, Docker Desktop y Git.
 
 ```bash
-git clone https://github.com/Lucianop5/gastos-hormiga.git
-cd gastos-hormiga
+git clone https://github.com/Lucianop5/DUCK.git
+cd DUCK
 npm install
 cp .env.example .env        # completar secretos locales; nunca commitear .env
-docker compose up -d        # PostgreSQL 18 en localhost:5433
-npm run db:migrate          # crea las tablas
-npm run db:generate
+npm run db:generate         # genera el cliente de Prisma
+docker compose up -d        # MySQL 8.4 en localhost:3307
+npm run db:migrate          # aplica las migraciones
+npm run db:seed             # categorías predeterminadas de usuarios existentes
 npm run dev                 # http://localhost:3000
 ```
 
+### Conexión para MySQL Workbench
+
+| Campo | Valor |
+|---|---|
+| Hostname | `127.0.0.1` |
+| Port | `3307` |
+| Username | `gastos_hormiga` |
+| Password | la definida en `MYSQL_PASSWORD` dentro de `.env` |
+| Default schema | `gastos_hormiga` |
+
+El contenedor usa `:3307` en el host para no chocar con el servicio MySQL local de Windows en
+`:3306`.
+
+### Sin Docker (MySQL local)
+
+Si prefieres el MySQL instalado en Windows, crea la base y el usuario desde Workbench:
+
+```sql
+CREATE DATABASE gastos_hormiga
+  CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci;
+CREATE USER 'gastos_hormiga'@'localhost'
+  IDENTIFIED BY 'gastos_hormiga_dev';
+GRANT ALL PRIVILEGES ON gastos_hormiga.* TO 'gastos_hormiga'@'localhost';
+FLUSH PRIVILEGES;
+```
+
+Luego apunta `DATABASE_URL` a `127.0.0.1:3306`. Docker con MySQL 8.4 es la vía recomendada porque es
+la versión que Prisma soporta oficialmente.
+
 Variables principales (ver `.env.example`): `DATABASE_URL`, `BETTER_AUTH_SECRET`,
-`BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` y las credenciales de PostgreSQL para Compose.
+`BETTER_AUTH_URL`, `NEXT_PUBLIC_APP_URL` y las credenciales de MySQL para Compose.
 
 ## Comandos
 
@@ -103,10 +137,12 @@ Variables principales (ver `.env.example`): `DATABASE_URL`, `BETTER_AUTH_SECRET`
 | `npm run start` | Servir el build |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | Verificación de tipos |
-| `npm test` | Pruebas con Vitest |
-| `npm run db:migrate` | Crear y aplicar migraciones |
+| `npm test` | Pruebas unitarias con Vitest |
+| `npm run test:integration` | Pruebas contra MySQL real (aislamiento entre usuarios) |
+| `npm run db:migrate` | Aplicar migraciones (`prisma migrate deploy`) |
+| `npm run db:migrate:dev` | Crear migraciones en desarrollo (requiere shadow database) |
 | `npm run db:studio` | Explorar la base de datos |
-| `npm run db:seed` | Cargar datos de ejemplo (identificados como tales) |
+| `npm run db:seed` | Crear las categorías predeterminadas faltantes |
 
 ## API
 
@@ -117,15 +153,16 @@ Contrato en [`docs/api.md`](docs/api.md); OpenAPI en `/api/openapi` y Swagger UI
 ## Pruebas
 
 ```bash
-npm test            # Vitest
-npx playwright test # E2E (Fase 6)
+npm test                 # unitarias (sin base de datos)
+npm run test:integration # requieren DATABASE_URL accesible
+npx playwright test      # E2E (Fase 6)
 ```
 
 ## Roadmap
 
 - **Fase 0** — Repositorio, flujo de trabajo y documentación base.
 - **Fase 1** — Análisis y diseño (modelo de datos, API, pantallas, ADRs).
-- **Fase 2** — Configuración: Next.js, Tailwind, shadcn, Prisma, Better Auth y Docker.
+- **Fase 2** — Configuración: Next.js, Tailwind, shadcn, Prisma, Better Auth, MySQL y Docker.
 - **Fase 3** — Dominio y API: categorías, gastos, presupuestos, validación y permisos.
 - **Fase 4** — Autenticación, layout y pantallas conectadas.
 - **Fase 5** — Analítica, gráficos y simulador.

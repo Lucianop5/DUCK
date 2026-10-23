@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<title>La categoría estándar — Gastos Hormiga</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Martian+Mono:wght@400;500&display=swap');
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{width:1440px;height:900px;overflow:hidden;background:#FFFFFF;color:#0F172A;font-family:Archivo,sans-serif}
+  header{height:84px;display:flex;align-items:center;justify-content:space-between;padding:0 64px;border-bottom:1px solid #E7EAF0}
+  .brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:700;letter-spacing:-.01em}
+  .logo{width:30px;height:30px;border-radius:9px;background:#2563EB;display:grid;place-items:center;color:#fff;font-size:12px;font-weight:700}
+  nav{display:flex;gap:30px;align-items:center;font-size:14px;color:#475569}
+  nav a{color:inherit;text-decoration:none}
+  nav .cta{background:#2563EB;color:#fff;padding:10px 18px;border-radius:9px;font-weight:600}
+  main{padding:64px 64px 0;display:grid;grid-template-columns:1fr 480px;gap:50px;position:relative;height:816px;overflow:hidden}
+  main:before{content:"";position:absolute;right:0;top:0;width:720px;height:620px;background:radial-gradient(circle at 60% 35%,#EFF5FF 0%,transparent 65%);pointer-events:none}
+  .copy{position:relative;z-index:2;padding-top:34px}
+  h1{font-size:64px;line-height:1.02;letter-spacing:-.04em;font-weight:800;max-width:620px}
+  h1 span{color:#2563EB}
+  .sub{margin-top:22px;font-size:18px;line-height:1.6;color:#475569;max-width:520px}
+  .actions{margin-top:32px;display:flex;align-items:center;gap:18px}
+  .primary{background:#2563EB;color:#fff;padding:14px 24px;border-radius:10px;font-size:15px;font-weight:600;text-decoration:none;box-shadow:0 8px 20px rgba(37,99,235,.22)}
+  .secondary{color:#0F172A;font-size:14px;font-weight:600;text-decoration:none;border:1px solid #D7DEE9;padding:13px 20px;border-radius:10px}
+  .trust{margin-top:26px;display:flex;gap:18px;font-size:12px;color:#64748B}
+  .trust span{display:flex;align-items:center;gap:7px}
+  .dot{width:7px;height:7px;border-radius:50%;background:#22C55E}
+  .visual{position:relative;z-index:2;display:flex;justify-content:center;padding-top:4px}
+  .phone{width:330px;height:620px;background:#0F172A;border-radius:36px;padding:10px;box-shadow:0 30px 60px rgba(15,23,42,.24)}
+  .screen{width:100%;height:100%;background:#F8FAFC;border-radius:28px;overflow:hidden;padding:22px 18px}
+  .screen-top{display:flex;justify-content:space-between;align-items:center;font-size:11px;color:#64748B}
+  .screen-top b{color:#0F172A;font-size:13px}
+  .balance{margin-top:18px;background:#0F172A;border-radius:16px;padding:18px;color:#fff}
+  .balance small{font-size:10px;letter-spacing:.08em;color:#94A3B8}
+  .balance strong{display:block;font-size:28px;letter-spacing:-.03em;margin-top:6px}
+  .balance .bar{height:6px;background:#334155;border-radius:5px;margin-top:14px;overflow:hidden}
+  .balance .bar i{display:block;width:82%;height:100%;background:#38BDF8;border-radius:5px}
+  .balance p{display:flex;justify-content:space-between;font-size:10px;color:#94A3B8;margin-top:8px}
+  .list{margin-top:18px}
+  .list h3{font-size:12px;color:#64748B;font-weight:500;margin-bottom:10px}
+  .item{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #E2E8F0}
+  .item i{width:30px;height:30px;border-radius:9px;display:block}
+  .item div{flex:1;font-size:12px}
+  .item span{font-family:Martian Mono,monospace;font-size:11px;color:#334155}
+  .mini-nav{display:flex;justify-content:space-between;margin-top:22px;font-size:9px;color:#94A3B8;padding:0 6px}
+  .mini-nav b{color:#2563EB}
+  .features{position:absolute;left:64px;right:64px;bottom:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .feature{border:1px solid #E7EAF0;border-radius:14px;padding:18px 20px;background:#fff}
+  .feature b{display:block;font-size:14px;margin-bottom:6px}
+  .feature p{font-size:12px;line-height:1.5;color:#64748B}
+  .badge{display:inline-block;font-size:10px;color:#2563EB;background:#EFF5FF;border-radius:20px;padding:4px 9px;margin-bottom:10px;font-weight:600}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand"><span class="logo">GH</span> Gastos Hormiga</div>
+  <nav><a>Cómo funciona</a><a>Categorías</a><a>Entrar</a><a class="cta">Crear cuenta</a></nav>
+</header>
+<main>
+  <section class="copy">
+    <h1>Toma el control de tus <span>gastos</span>.</h1>
+    <p class="sub">Registra lo que gastas, organiza tus categorías y cumple tu presupuesto mensual. Simple, claro y en pesos chilenos.</p>
+    <div class="actions"><a class="primary">Crear cuenta gratis</a><a class="secondary">Ver cómo funciona</a></div>
+    <div class="trust"><span><i class="dot"></i>Hecho para Chile</span><span><i class="dot"></i>Montos en CLP</span><span><i class="dot"></i>Tus datos, privados</span></div>
+  </section>
+  <section class="visual">
+    <div class="phone"><div class="screen">
+      <div class="screen-top"><b>Octubre</b><span>2026</span></div>
+      <div class="balance">
+        <small>DISPONIBLE ESTE MES</small>
+        <strong>$ 51.270</strong>
+        <div class="bar"><i></i></div>
+        <p><span>Gastado $ 248.730</span><span>82%</span></p>
+      </div>
+      <div class="list">
+        <h3>Últimos gastos</h3>
+        <div class="item"><i style="background:#F97316"></i><div>Almuerzo</div><span>6.900</span></div>
+        <div class="item"><i style="background:#3B82F6"></i><div>Micro 210</div><span>730</span></div>
+        <div class="item"><i style="background:#EC4899"></i><div>Delivery</div><span>12.500</span></div>
+        <div class="item"><i style="background:#EAB308"></i><div>Almacén</div><span>3.250</span></div>
+      </div>
+      <div class="mini-nav"><span>Inicio</span><span>Gastos</span><span>Presupuesto</span><span>Más</span></div>
+    </div></div>
+  </section>
+  <section class="features">
+    <div class="feature"><span class="badge">Presupuesto</span><b>Avisos al 80% y 100%</b><p>Entérate antes de pasarte, no después.</p></div>
+    <div class="feature"><span class="badge">Análisis</span><b>Mira tus patrones</b><p>Categorías, meses y gastos frecuentes.</p></div>
+    <div class="feature"><span class="badge">Simulador</span><b>Proyecta tu año</b><p>Prueba escenarios sin tocar tus datos.</p></div>
+  </section>
+</main>
+</body>
+</html>
+<!-- sketch refresh 2026-10-23T12:53:33 -->
