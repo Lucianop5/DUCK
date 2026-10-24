@@ -4,7 +4,7 @@ Aplicación web de finanzas personales para registrar, administrar y analizar lo
 cotidianos —los "gastos hormiga"— que suelen pasar desapercibidos. Pensada para usuarios de Chile,
 con el peso chileno (CLP) como moneda principal.
 
-> **Estado:** Gastos Hormiga tiene interfaz y API conectadas sobre MySQL 8.4: autenticación,
+> **Estado:** DUCK tiene interfaz y API conectadas sobre MySQL 8.4: autenticación,
 > gastos, categorías, presupuestos, analítica y simulador. Pendientes OpenAPI/Swagger,
 > una suite E2E mantenida y la preparación para despliegue público.
 > Avance detallado en [`docs/progress.md`](docs/progress.md).
@@ -14,7 +14,7 @@ con el peso chileno (CLP) como moneda principal.
 ## El problema
 
 Un café de $2.500 comprado 20 veces al mes son $50.000 mensuales y $600.000 al año. Cada compra
-individual parece insignificante, así que nadie percibe el patrón. Gastos Hormiga lo hace visible:
+individual parece insignificante, así que nadie percibe el patrón. DUCK lo hace visible:
 registra los gastos, los agrupa por categoría, los compara con presupuestos y proyecta cuánto podrías
 ahorrar si cambias un hábito.
 
