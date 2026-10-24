@@ -75,16 +75,14 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 
 ## Revisión inicial de Dependabot
 
-Se revisaron los cinco cambios de manifiesto. Los PR #3 y #4 fueron probados localmente y
-fusionados con autorización del autor. Los PR #1, #2 y #5 siguen abiertos, sin fusionar.
-Resolvers 6 se validó en `chore/dependabot-resolvers6`; #5 sigue pendiente de validación.
-La migración de #2 está committeada por separado en `chore/dependabot-prisma7` y no forma
-parte de esta rama. No hay comprobaciones de CI en GitHub para estos PR.
+Los PR #1, #3 y #4 fueron probados localmente y fusionados con autorización del autor.
+Prisma 7 se validó en `chore/dependabot-prisma7` y se autorizó su integración; #5 sigue
+pendiente de validación. No hay comprobaciones de CI en GitHub para estos PR.
 
 | PR | Actualización | Recomendación inicial |
 |---|---|---|
-| [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Validado en rama separada y autorizado para integración |
-| [#2](https://github.com/Lucianop5/DUCK/pull/2) | `@prisma/client` 6.19.3 → 7.10.1 | No fusionar aisladamente: el CLI `prisma` permanece en 6; requiere migración coordinada |
+| [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Fusionado tras validación |
+| [#2](https://github.com/Lucianop5/DUCK/pull/2) | Prisma 6.19.3 → 7.10.1 | Migración coordinada validada y autorizada para integración |
 | [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Fusionado tras build, pruebas y comprobación de gráficos en navegador |
 | [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` y `react-dom` 19.3.0 → 19.3.1 | Fusionado; se añadió React DOM a la actualización y se probó el conjunto |
 | [#5](https://github.com/Lucianop5/DUCK/pull/5) | `typescript` 5 → 7 | Migración mayor: verificar compatibilidad de Next.js, herramientas y tipos |
@@ -95,6 +93,15 @@ registro de una cuenta temporal, creación de datos, renderizado de ambos gráfi
 vista móvil de 390 px, dashboard, navegación y alta de gasto mediante formulario, sin
 excepciones del navegador. Las cuentas temporales se eliminaron. Esta comprobación no cubre
 todos los recorridos E2E ni constituye una auditoría completa de accesibilidad.
+
+**Validación de #2 (2026-10-23):** cliente, CLI y adaptador `@prisma/adapter-mariadb`
+fijados en 7.10.1. URL del datasource centralizada en `prisma.config.ts` para el CLI;
+el cliente usa `DATABASE_URL` mediante el adaptador y el seed reutiliza ese cliente.
+No se modificaron tablas ni migraciones. Pasaron `prisma generate`, `prisma validate`,
+`prisma migrate status`, build de producción, ESLint de código/configuración/seed,
+18 pruebas unitarias y 14 de integración MySQL. Edge/Playwright comprobó registro,
+categorías, gastos por API y formulario, dashboard, gráficos y móvil sin excepciones.
+La cuenta temporal se eliminó. `npm audit` informó cero vulnerabilidades en esta rama.
 
 **Validación de #1 (2026-10-23):** `@hookform/resolvers` 6.0.0 compatible con las versiones
 instaladas de React Hook Form 7.90.0 y Zod 4.6.7. La app aún no usa `zodResolver` en sus
@@ -143,10 +150,11 @@ con `pnpm install --lockfile-only --ignore-scripts`, sin ejecutar scripts de ins
   eliminar gastos, presupuestos y categorías dentro de una transacción.
 - **Servicio MySQL local en `:3306`:** queda intacto y no lo usa la aplicación; el proyecto vive en
   el contenedor de `:3307`. No detenerlo salvo que se quiera liberar el puerto.
-- **8 vulnerabilidades altas en `npm audit`:** todas en herramientas de desarrollo (Prisma CLI,
-  ESLint y sus dependencias). No se ejecutará `npm audit fix --force`; se reevalúan en Fase 6.
+- **Auditoría de dependencias:** la rama de Prisma 7 informa cero vulnerabilidades en
+  `npm audit`; repetir la auditoría al integrar futuras actualizaciones. No se ejecutó
+  `npm audit fix --force`.
 - **shadcn/ui vendorizado:** el CSS base (`src/styles/shadcn-base.css`) se copió para no incluir el
   CLI como dependencia de runtime. Al añadir componentes nuevos, evitar el import
   `shadcn/tailwind.css`.
-- **Versiones muy recientes:** Next 16.4, Prisma 6.19, Better Auth 1.7 y MySQL 8.4 se fijaron tras
+- **Versiones muy recientes:** Next 16.4, Prisma 7.10, Better Auth 1.7 y MySQL 8.4 se fijaron tras
   verificar compatibilidad; cualquier actualización requiere repetir build y pruebas.
