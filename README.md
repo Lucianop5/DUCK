@@ -71,10 +71,10 @@ DUCK/
 └── docs/
 ```
 
-El repositorio **DUCK** está destinado a los cuatro proyectos del ecosistema: Gastos Hormiga,
-WarrantyTracker, FuelTracker y LifeDashboard. Por ahora, la implementación en la raíz es
-**Gastos Hormiga**; las otras aplicaciones aún no están implementadas. La integración futura
-con LifeDashboard mediante OAuth 2.0 / OpenID Connect está prevista, no implementada.
+**DUCK** es uno de los cuatro proyectos del ecosistema, junto a **WarrantyTracker**,
+**FuelTracker** y **LifeDashboard**. Este repositorio corresponde a DUCK; los otros proyectos
+se desarrollan por separado. La integración futura con LifeDashboard mediante OAuth 2.0 /
+OpenID Connect está prevista, no implementada.
 
 Detalle en [`docs/architecture.md`](docs/architecture.md).
 
