@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-23T00:00:00Z",
-  "title": "Design System: Gastos Hormiga",
+  "generatedAt": "2026-10-24T03:27:35Z",
+  "title": "Design System: DUCK",
   "extensions": {
     "colorMeta": {
       "machine": { "role": "secondary", "displayName": "Verde esmalte de máquina", "tonalRamp": ["oklch(15% 0.04 165)", "oklch(26% 0.04 165)", "oklch(38% 0.04 165)", "oklch(49% 0.04 165)", "oklch(61% 0.04 165)", "oklch(72% 0.04 165)", "oklch(84% 0.04 165)", "oklch(95% 0.04 165)"] },
@@ -47,7 +47,7 @@
       { "name": "keycap", "value": "0 3px 0 var(--machine-deep), inset 0 1px 0 #fff", "purpose": "Base física de tecla." },
       { "name": "keycap-hover", "value": "0 5px 0 var(--machine-deep), inset 0 1px 0 #fff", "purpose": "Hover con translateY(-2px)." },
       { "name": "keycap-active", "value": "0 1px 0 var(--machine-deep), inset 0 1px 0 #fff", "purpose": "Pulsación con translateY(1px)." },
-      { "name": "stamp-action", "value": "0 4px 0 #7C2419", "purpose": "Acceso, registro y acción de sidebar; CTA público usa 5px." },
+      { "name": "stamp-action", "value": "0 4px 0 #7C2419", "purpose": "Acceso y registro; CTA público usa 5px. El acceso rápido privado usa tokens de sidebar." },
       { "name": "stamp-action-active", "value": "0 1px 0 #7C2419", "purpose": "Base al pulsar acción roja." }
     ],
     "motion": [
@@ -64,6 +64,12 @@
     ]
   },
   "components": [
+    {
+      "name": "Firma DUCK", "kind": "custom",
+      "description": "BrandLockup con sello DUCK de 36 × 36 px, Doto a 10 px y firma CLP · CHILE. La marca decorativa conserva el nombre accesible en el enlace; la variante ink usa el fondo de tinta.",
+      "html": "<a class=\"ds-brand\" href=\"/\" aria-label=\"DUCK\"><span class=\"ds-brand-mark\" aria-hidden=\"true\">DUCK</span><span class=\"ds-brand-copy\"><span class=\"ds-brand-name\">DUCK</span><span class=\"ds-brand-locale\">CLP · CHILE</span></span></a>",
+      "css": ".ds-brand{display:inline-flex;align-items:center;gap:12px;color:var(--tape);text-decoration:none}.ds-brand-mark{display:inline-grid;place-items:center;flex-shrink:0;width:36px;height:36px;border-radius:3px;background:var(--stamp);color:var(--tape);font:400 10px var(--font-doto),ui-monospace,monospace;letter-spacing:.04em}.ds-brand-mark-ink{background:var(--ink)}.ds-brand-copy{display:flex;flex-direction:column;line-height:1}.ds-brand-name{font:800 13px/1 var(--font-archivo),ui-sans-serif,sans-serif;letter-spacing:.18em}.ds-brand-locale{margin-top:4px;font:400 9px/1 var(--font-doto),ui-monospace,monospace;letter-spacing:.18em;opacity:.65}.ds-brand:focus-visible{outline:2px solid var(--ring);outline-offset:2px}"
+    },
     {
       "name": "Botón primario semántico", "kind": "button", "refersTo": "button-primary",
       "description": "Control base compacto; sigue los tokens de tema, no la tecla pública.",
