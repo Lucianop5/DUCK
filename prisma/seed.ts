@@ -1,9 +1,7 @@
 import "dotenv/config";
 
-import { PrismaClient } from "../src/generated/prisma/client";
+import { prisma } from "../src/lib/prisma";
 import { DEFAULT_CATEGORIES } from "../src/lib/constants/categories";
-
-const prisma = new PrismaClient();
 
 /**
  * Repara las categorías predeterminadas de los usuarios existentes.
