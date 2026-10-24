@@ -75,17 +75,17 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 
 ## Revisión inicial de Dependabot
 
-Los PR #1, #3 y #4 fueron probados localmente y fusionados con autorización del autor.
-Prisma 7 se validó en `chore/dependabot-prisma7` y se autorizó su integración; #5 sigue
-pendiente de validación. No hay comprobaciones de CI en GitHub para estos PR.
+Los cinco PR se probaron localmente en ramas de trabajo y su integración fue autorizada
+por el autor. #1, #2, #3 y #4 están fusionados; #5 queda validado para integrar con este
+cambio. No hay comprobaciones de CI en GitHub para estos PR.
 
 | PR | Actualización | Recomendación inicial |
 |---|---|---|
 | [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Fusionado tras validación |
-| [#2](https://github.com/Lucianop5/DUCK/pull/2) | Prisma 6.19.3 → 7.10.1 | Migración coordinada validada y autorizada para integración |
+| [#2](https://github.com/Lucianop5/DUCK/pull/2) | Prisma 6.19.3 → 7.10.1 | Fusionado tras migración coordinada y revalidación con resolvers 6 |
 | [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Fusionado tras build, pruebas y comprobación de gráficos en navegador |
 | [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` y `react-dom` 19.3.0 → 19.3.1 | Fusionado; se añadió React DOM a la actualización y se probó el conjunto |
-| [#5](https://github.com/Lucianop5/DUCK/pull/5) | `typescript` 5 → 7 | Migración mayor: verificar compatibilidad de Next.js, herramientas y tipos |
+| [#5](https://github.com/Lucianop5/DUCK/pull/5) | TypeScript 5 → 7.0.2 | Validado con paquete de compatibilidad de la API de TypeScript 6 para ESLint |
 
 **Validación de #3 y #4, por separado:** build de producción, ESLint de `src`/`tests`,
 18 pruebas unitarias y 14 pruebas de integración MySQL. En Edge con Playwright se comprobó
@@ -115,6 +115,20 @@ dependencias, preexistentes y resueltas en la rama separada de #2, no por resolv
 **Configuración pnpm:** lockfile guardado y permisos `allowBuilds` convertidos de textos
 provisionales a booleanos para los seis paquetes de herramientas ya instalados. Se validó
 con `pnpm install --lockfile-only --ignore-scripts`, sin ejecutar scripts de instalación.
+
+**Validación de #5 (2026-10-24):** TypeScript 7 por sí solo rompió ESLint: la versión 7.0
+no expone la API JavaScript que necesita typescript-eslint. Se aplicó la configuración
+oficial de convivencia de Microsoft: `@typescript/native` es alias de `typescript@7.0.2`
+y proporciona `tsc`; `typescript` es alias de `@typescript/typescript6@6.0.2` y proporciona
+la API y `tsc6`. `npm run typecheck` usa 7.0.2; el chequeo interno de `next build` resuelve
+el paquete de compatibilidad 6.0.2. No se deshabilitaron los errores de tipos ni ESLint.
+Tras instalación limpia pasaron build, typecheck, ESLint, 23 pruebas unitarias y 14 de
+integración MySQL. Edge/Playwright verificó registro, categorías, gastos, dashboard,
+gráficos y móvil, sin excepciones; cuenta temporal eliminada. Auditoría npm sin
+vulnerabilidades. Lockfiles npm/pnpm sincronizados. DUCK se levantó en `:3001` porque
+otro proyecto ocupaba `:3000`.
+
+Referencia: https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0
 
 ## Pendientes inmediatos
 
