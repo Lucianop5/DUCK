@@ -1,7 +1,5 @@
 # DUCK
 
-Repositorio del ecosistema DUCK. La primera aplicación implementada es **Gastos Hormiga**.
-
 Aplicación web de finanzas personales para registrar, administrar y analizar los pequeños gastos
 cotidianos —los "gastos hormiga"— que suelen pasar desapercibidos. Pensada para usuarios de Chile,
 con el peso chileno (CLP) como moneda principal.
