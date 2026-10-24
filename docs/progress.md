@@ -75,15 +75,14 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 
 ## Revisión inicial de Dependabot
 
-Se revisaron los cinco cambios de manifiesto. Los PR #3 y #4 fueron probados localmente y
-fusionados con autorización del autor. Los PR #1, #2 y #5 siguen abiertos, sin fusionar.
-Prisma 7 se validó en `chore/dependabot-prisma7`; #1 y #5 siguen pendientes de validación.
-No hay comprobaciones de CI en GitHub para estos PR.
+Los PR #1, #3 y #4 fueron probados localmente y fusionados con autorización del autor.
+Prisma 7 se validó en `chore/dependabot-prisma7` y se autorizó su integración; #5 sigue
+pendiente de validación. No hay comprobaciones de CI en GitHub para estos PR.
 
 | PR | Actualización | Recomendación inicial |
 |---|---|---|
-| [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Revisar compatibilidad de la versión mayor con React Hook Form y Zod |
-| [#2](https://github.com/Lucianop5/DUCK/pull/2) | Prisma 6.19.3 → 7.10.1 | Migración coordinada validada en rama separada, pendiente de publicación y merge |
+| [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Fusionado tras validación |
+| [#2](https://github.com/Lucianop5/DUCK/pull/2) | Prisma 6.19.3 → 7.10.1 | Migración coordinada validada y autorizada para integración |
 | [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Fusionado tras build, pruebas y comprobación de gráficos en navegador |
 | [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` y `react-dom` 19.3.0 → 19.3.1 | Fusionado; se añadió React DOM a la actualización y se probó el conjunto |
 | [#5](https://github.com/Lucianop5/DUCK/pull/5) | `typescript` 5 → 7 | Migración mayor: verificar compatibilidad de Next.js, herramientas y tipos |
@@ -103,6 +102,19 @@ No se modificaron tablas ni migraciones. Pasaron `prisma generate`, `prisma vali
 18 pruebas unitarias y 14 de integración MySQL. Edge/Playwright comprobó registro,
 categorías, gastos por API y formulario, dashboard, gráficos y móvil sin excepciones.
 La cuenta temporal se eliminó. `npm audit` informó cero vulnerabilidades en esta rama.
+
+**Validación de #1 (2026-10-23):** `@hookform/resolvers` 6.0.0 compatible con las versiones
+instaladas de React Hook Form 7.90.0 y Zod 4.6.7. La app aún no usa `zodResolver` en sus
+formularios; se añadieron cinco pruebas directas con el esquema de gastos para cubrir
+transformaciones, valores por defecto, errores por campo en modos async/sync y `raw`.
+Pasaron build de producción, ESLint de `src`/`tests`, 23 pruebas unitarias y 14 de integración
+MySQL. Edge/Playwright comprobó registro, gastos, dashboard, gráficos y móvil sin excepciones;
+la cuenta temporal se eliminó. `npm audit` conserva tres alertas altas de Prisma 6 y sus
+dependencias, preexistentes y resueltas en la rama separada de #2, no por resolvers 6.
+
+**Configuración pnpm:** lockfile guardado y permisos `allowBuilds` convertidos de textos
+provisionales a booleanos para los seis paquetes de herramientas ya instalados. Se validó
+con `pnpm install --lockfile-only --ignore-scripts`, sin ejecutar scripts de instalación.
 
 ## Pendientes inmediatos
 
