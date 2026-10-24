@@ -16,7 +16,7 @@ export default async function AuthLayout({
   return (
     <main className="landing-world machine-panel grid min-h-dvh lg:grid-cols-[1.05fr_0.95fr]">
       <section className="relative hidden flex-col justify-between border-r border-tape/15 p-10 lg:flex xl:p-14">
-        <Link href="/" className="focus-ring w-fit" aria-label="Volver a Gastos Hormiga">
+        <Link href="/" className="focus-ring w-fit" aria-label="Volver a DUCK">
           <BrandLockup />
         </Link>
 
@@ -45,7 +45,7 @@ export default async function AuthLayout({
 
       <section className="flex min-h-dvh flex-col bg-background text-foreground">
         <div className="flex items-center justify-between gap-4 border-b border-border/70 px-6 py-5 lg:hidden">
-          <Link href="/" aria-label="Volver a Gastos Hormiga">
+          <Link href="/" aria-label="Volver a DUCK">
             <BrandLockup tone="ink" className="text-ink" />
           </Link>
           <Link href="/" className="text-[11px] text-muted-foreground underline underline-offset-4">

@@ -111,7 +111,7 @@ function UserCard({ user }: { user: ShellUser }) {
     <div className="border-t border-sidebar-border pt-4">
       <div className="flex items-center gap-3 px-2">
         <span className="grid size-9 shrink-0 place-items-center rounded-full border border-sidebar-border font-print text-[11px]">
-          {initials(user.name) || "GH"}
+          {initials(user.name) || "D"}
         </span>
         <div className="min-w-0">
           <p className="truncate text-[12px] font-semibold">{user.name}</p>
@@ -146,7 +146,7 @@ export function AppShell({
   return (
     <div className="min-h-dvh lg:grid lg:grid-cols-[248px_minmax(0,1fr)]">
       <aside className="sticky top-0 hidden h-dvh flex-col gap-6 border-r border-sidebar-border bg-sidebar p-4 text-sidebar-foreground lg:flex">
-        <Link href="/dashboard" className="focus-ring px-2 py-2" aria-label="Gastos Hormiga">
+        <Link href="/dashboard" className="focus-ring px-2 py-2" aria-label="DUCK">
           <BrandLockup />
         </Link>
 
@@ -167,7 +167,7 @@ export function AppShell({
           </div>
           <div className="mt-auto px-3">
             <p className="print-label border-t border-sidebar-border pt-4 text-[8px] leading-[1.9] text-sidebar-foreground/30">
-              GASTOS HORMIGA
+              DUCK
               <br />
               CLP · AMÉRICA/SANTIAGO
             </p>
@@ -196,7 +196,7 @@ export function AppShell({
                 className="w-[290px] border-sidebar-border bg-sidebar p-4 text-sidebar-foreground"
               >
                 <SheetHeader className="p-0">
-                  <SheetTitle className="sr-only">Menú de Gastos Hormiga</SheetTitle>
+                  <SheetTitle className="sr-only">Menú de DUCK</SheetTitle>
                 </SheetHeader>
                 <Link
                   href="/dashboard"
@@ -211,7 +211,7 @@ export function AppShell({
                 </div>
               </SheetContent>
             </Sheet>
-            <Link href="/dashboard" aria-label="Gastos Hormiga">
+            <Link href="/dashboard" aria-label="DUCK">
               <BrandLockup className="scale-90 origin-left" />
             </Link>
           </div>
@@ -231,7 +231,7 @@ export function AppShell({
 
         <footer className="border-t border-border px-4 py-4 text-center lg:px-9">
           <p className="print-label text-[8px] text-muted-foreground/60">
-            GASTOS HORMIGA · CLP · HECHO EN CHILE
+            DUCK · CLP · HECHO EN CHILE
           </p>
         </footer>
       </div>

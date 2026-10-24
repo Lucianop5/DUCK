@@ -36,7 +36,7 @@ export function TapeDemo({
         )}
       >
         <div className="flex items-baseline justify-between gap-3 border-b border-ink/70 pb-2">
-          <span className="print-label text-[10px]">GASTOS HORMIGA</span>
+          <span className="print-label text-[10px]">DUCK</span>
           <span className="print-label text-[10px]">OCT 2026</span>
         </div>
         <p className="print-label mt-2 text-[8px] text-ink/55">

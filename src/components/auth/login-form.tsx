@@ -46,7 +46,7 @@ export function LoginForm() {
     <div className="paper-sheet tape-holes p-7 sm:p-9">
       <div className="flex items-baseline justify-between border-b border-ink/60 pb-3">
         <span className="print-label text-[9px]">ACCESO</span>
-        <span className="print-label text-[8px] text-ink/45">GH-09</span>
+        <span className="print-label text-[8px] text-ink/45">DUCK-09</span>
       </div>
 
       <h1 className="mt-6 text-[34px] leading-[0.98] font-extrabold tracking-[-0.04em]">

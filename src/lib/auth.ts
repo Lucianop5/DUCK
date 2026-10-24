@@ -7,7 +7,7 @@ import { createDefaultCategories } from "@/lib/services/categories";
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, { provider: "mysql" }),
-  appName: "Gastos Hormiga",
+  appName: "DUCK",
   emailAndPassword: {
     enabled: true,
     minPasswordLength: 8,

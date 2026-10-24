@@ -14,7 +14,7 @@ import { CategoryKeys, TapeDemo } from "@/components/marketing/tape-demo";
 import { formatCLP } from "@/lib/date";
 
 export const metadata = {
-  title: "Gastos Hormiga — Cada gasto pequeño suma",
+  title: "DUCK — Cada gasto pequeño suma",
   description:
     "Anota tus gastos en segundos, ponle presupuesto a tus categorías y mira el mes completo sin planillas. Hecho en Chile, en pesos.",
 };
@@ -70,7 +70,7 @@ export default function Home() {
       />
 
       <header className="relative z-20 mx-auto flex h-20 max-w-[1440px] items-center justify-between gap-3 border-b border-tape/15 px-4 sm:px-10 lg:h-24 lg:px-12">
-        <Link href="/" aria-label="Gastos Hormiga, inicio" className="focus-ring">
+        <Link href="/" aria-label="DUCK, inicio" className="focus-ring">
           <BrandLockup className="max-sm:[&>span:last-child]:hidden" />
         </Link>
 
@@ -160,7 +160,7 @@ export default function Home() {
             <p className="print-label text-[8px] leading-[1.9] text-tape/35">
               MÁQUINA SUMADORA
               <br />
-              MODELO GH-09 · SANTIAGO
+              MODELO DUCK-09 · SANTIAGO
             </p>
           </div>
         </aside>
@@ -415,7 +415,7 @@ export default function Home() {
           <div className="flex items-center gap-3">
             <BrandMark />
             <div>
-              <p className="text-[11px] font-bold tracking-[0.16em]">GASTOS HORMIGA</p>
+              <p className="text-[11px] font-bold tracking-[0.16em]">DUCK</p>
               <p className="print-label mt-1 text-[8px] text-tape/40">
                 HECHO EN CHILE · MONTOS EN CLP
               </p>
