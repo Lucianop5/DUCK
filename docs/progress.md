@@ -83,7 +83,7 @@ parte de esta rama. No hay comprobaciones de CI en GitHub para estos PR.
 
 | PR | Actualización | Recomendación inicial |
 |---|---|---|
-| [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Validado en rama separada; pendiente de publicación y merge |
+| [#1](https://github.com/Lucianop5/DUCK/pull/1) | `@hookform/resolvers` 5.9.2 → 6.0.0 | Validado en rama separada y autorizado para integración |
 | [#2](https://github.com/Lucianop5/DUCK/pull/2) | `@prisma/client` 6.19.3 → 7.10.1 | No fusionar aisladamente: el CLI `prisma` permanece en 6; requiere migración coordinada |
 | [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Fusionado tras build, pruebas y comprobación de gráficos en navegador |
 | [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` y `react-dom` 19.3.0 → 19.3.1 | Fusionado; se añadió React DOM a la actualización y se probó el conjunto |
@@ -104,6 +104,10 @@ Pasaron build de producción, ESLint de `src`/`tests`, 23 pruebas unitarias y 14
 MySQL. Edge/Playwright comprobó registro, gastos, dashboard, gráficos y móvil sin excepciones;
 la cuenta temporal se eliminó. `npm audit` conserva tres alertas altas de Prisma 6 y sus
 dependencias, preexistentes y resueltas en la rama separada de #2, no por resolvers 6.
+
+**Configuración pnpm:** lockfile guardado y permisos `allowBuilds` convertidos de textos
+provisionales a booleanos para los seis paquetes de herramientas ya instalados. Se validó
+con `pnpm install --lockfile-only --ignore-scripts`, sin ejecutar scripts de instalación.
 
 ## Pendientes inmediatos
 
