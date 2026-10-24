@@ -5,7 +5,7 @@ primary_target: "src/app/page.tsx"
 related_targets: ["src/app/(app)"]
 ---
 
-# Landing y sistema de interfaz — Gastos Hormiga
+# Landing y sistema de interfaz — DUCK
 
 ## Alcance
 

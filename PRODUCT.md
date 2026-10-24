@@ -22,7 +22,7 @@ patrones y simulación de escenarios antes de tomar decisiones.
 
 ## Product Purpose
 
-Gastos Hormiga es una app personal de finanzas para Chile. Hace visible el dinero que se va en
+DUCK es una app personal de finanzas para Chile. Hace visible el dinero que se va en
 gastos pequeños y repetidos, lo convierte en presupuesto mensual y permite proyectar el mes o
 el año.
 
@@ -76,7 +76,8 @@ ecosistema DUCK (LifeDashboard), algo que una app de gastos aislada no puede ofr
 
 ## Brand Commitments
 
-- Nombre: **Gastos Hormiga**. La metáfora es el gasto pequeño y repetido que, sumado, pesa.
+- Nombre visible: **DUCK**. «Gastos hormiga» describe los gastos pequeños y repetidos,
+  no la marca del frontend. Usar DUCK en títulos, navegación, formularios y metadatos.
 - Voz: español de Chile, directa y sin infantilizar al usuario. Nada de culpa ni de sermón
   financiero.
 - El producto se presenta como una herramienta seria de uso real, no como una demo.

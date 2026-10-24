@@ -21,15 +21,15 @@ const doto = Doto({
 
 export const metadata: Metadata = {
   title: {
-    default: "Gastos Hormiga — Cada gasto pequeño suma",
-    template: "%s · Gastos Hormiga",
+    default: "DUCK — Cada gasto pequeño suma",
+    template: "%s · DUCK",
   },
   description:
     "Anota tus gastos en segundos, ponle presupuesto a tus categorías y mira el mes completo sin planillas. Hecho en Chile, en pesos.",
-  applicationName: "Gastos Hormiga",
-  authors: [{ name: "Gastos Hormiga" }],
+  applicationName: "DUCK",
+  authors: [{ name: "DUCK" }],
   openGraph: {
-    title: "Gastos Hormiga",
+    title: "DUCK",
     description:
       "Los gastos pequeños, sumados, pesan. Anótalos en segundos y mira el mes completo sin planillas.",
     locale: "es_CL",

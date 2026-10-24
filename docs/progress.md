@@ -76,8 +76,8 @@ Bitácora de funcionalidades completadas, pendientes y decisiones técnicas.
 ## Revisión inicial de Dependabot
 
 Los cinco PR se probaron localmente en ramas de trabajo y su integración fue autorizada
-por el autor. #1, #2, #3 y #4 están fusionados; #5 queda validado para integrar con este
-cambio. No hay comprobaciones de CI en GitHub para estos PR.
+por el autor. #1, #2, #3, #4 y #5 están fusionados.
+No hay comprobaciones de CI en GitHub para estos PR.
 
 | PR | Actualización | Recomendación inicial |
 |---|---|---|
@@ -85,7 +85,7 @@ cambio. No hay comprobaciones de CI en GitHub para estos PR.
 | [#2](https://github.com/Lucianop5/DUCK/pull/2) | Prisma 6.19.3 → 7.10.1 | Fusionado tras migración coordinada y revalidación con resolvers 6 |
 | [#3](https://github.com/Lucianop5/DUCK/pull/3) | `recharts` 3.8.0 → 3.10.1 | Fusionado tras build, pruebas y comprobación de gráficos en navegador |
 | [#4](https://github.com/Lucianop5/DUCK/pull/4) | `react` y `react-dom` 19.3.0 → 19.3.1 | Fusionado; se añadió React DOM a la actualización y se probó el conjunto |
-| [#5](https://github.com/Lucianop5/DUCK/pull/5) | TypeScript 5 → 7.0.2 | Validado con paquete de compatibilidad de la API de TypeScript 6 para ESLint |
+| [#5](https://github.com/Lucianop5/DUCK/pull/5) | TypeScript 5 → 7.0.2 | Fusionado con paquete de compatibilidad de la API de TypeScript 6 para ESLint |
 
 **Validación de #3 y #4, por separado:** build de producción, ESLint de `src`/`tests`,
 18 pruebas unitarias y 14 pruebas de integración MySQL. En Edge con Playwright se comprobó
@@ -131,6 +131,17 @@ otro proyecto ocupaba `:3000`.
 Referencia: https://devblogs.microsoft.com/typescript/announcing-typescript-7-0/#running-side-by-side-with-typescript-6.0
 
 ## Pendientes inmediatos
+
+**Marca del frontend (2026-10-24):** nombre visible confirmado por el autor: **DUCK**.
+Reemplazadas las marcas anteriores en sello, firma, landing, demo, acceso/registro,
+sidebar, cabecera móvil, pie, metadatos, nombres accesibles y nombre de Better Auth.
+Se conservaron los identificadores internos de paquete/base de datos y la funcionalidad.
+Contrato de marca registrado en `PRODUCT.md` y documentación visual actualizada.
+Validación: build, typecheck, ESLint, 26 pruebas unitarias (3 de marca) y 14 de integración.
+Edge/Playwright verificó landing, login, registro, dashboard, menú móvil, tema oscuro,
+metadatos y nombres accesibles sin restos de marca anterior ni desborde horizontal.
+Capturas revisadas en escritorio y móvil; cuenta temporal eliminada. La revisión se
+limita al cambio de marca, no constituye una auditoría completa de accesibilidad.
 
 1. Publicar OpenAPI 3.1 y Swagger UI en `/api/openapi` y `/api/docs`, incluidos los nuevos endpoints.
 2. Consolidar E2E repetibles en el repositorio y ampliar cobertura de presupuestos, paginación,

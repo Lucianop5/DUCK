@@ -1,5 +1,5 @@
 ---
-name: Gastos Hormiga
+name: DUCK
 description: La tira de sumar — máquina verde, papel continuo y montos impresos.
 colors:
   machine: "#17352d"
@@ -139,7 +139,7 @@ components:
     padding: "0.15rem 0.45rem"
 ---
 
-# Design System: Gastos Hormiga
+# Design System: DUCK
 
 ## Overview
 
@@ -267,7 +267,7 @@ El `Card` base de biblioteca también existe: fondo semántico, radio `xl`, ring
 
 `TapeDemo` representa movimientos sintéticos rotulados «DATOS DE EJEMPLO», total rojo, presupuesto y porcentaje legible, con perforaciones y ranuras decorativas. Opciones `compact` y `animate` afectan el espaciado y entrada de cinta; `animate={false}` no quita la animación propia del total. `CategoryKeys` dibuja nueve teclas de tres columnas: son `div`, no botones funcionales, aunque heredan hover del material.
 
-`BrandMark` es el monograma tipográfico GH implementado en código, no un logotipo externo entregado. `BrandLockup` añade nombre y «CLP · CHILE»; tonos tape e ink, con marca decorativa y nombre accesible en los enlaces que la contienen.
+`BrandMark` es la marca tipográfica DUCK implementada en código, no un logotipo externo entregado. El sello conserva 36 × 36 px y usa Doto a 10 px para que las cuatro letras quepan sin recorte. `BrandLockup` añade el nombre DUCK y «CLP · CHILE»; tonos tape e ink, con marca decorativa y nombre accesible en los enlaces que la contienen.
 
 ### Accesibilidad observada y límites
 

@@ -11,14 +11,14 @@ export function BrandMark({
     <span
       aria-hidden="true"
       className={cn(
-        "inline-grid size-9 shrink-0 place-items-center rounded-[3px] font-print text-[13px] tracking-[0.06em]",
+        "inline-grid size-9 shrink-0 place-items-center rounded-[3px] font-print text-[10px] tracking-[0.04em]",
         tone === "tape"
           ? "bg-stamp text-tape"
           : "bg-ink text-tape",
         className,
       )}
     >
-      GH
+      DUCK
     </span>
   );
 }
@@ -35,7 +35,7 @@ export function BrandLockup({
       <BrandMark tone={tone} />
       <span className="flex flex-col leading-none">
         <span className="text-[13px] font-extrabold tracking-[0.18em]">
-          GASTOS HORMIGA
+          DUCK
         </span>
         <span className="mt-1 font-print text-[9px] tracking-[0.18em] opacity-65">
           CLP · CHILE
